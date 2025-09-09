@@ -24,10 +24,29 @@ namespace projetopr2
 
         private void button1_Click(object sender, EventArgs e)
         {
+          
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
             Form4 form4 = new Form4();
             form4.Show();
 
             // Oculta a tela de login
+            this.Hide();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            Form7 form7 = new Form7();
+            form7.Show();
+            this.Hide();
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.Show();
             this.Hide();
         }
     }

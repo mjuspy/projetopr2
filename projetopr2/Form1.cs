@@ -60,6 +60,7 @@ namespace projetopr2
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             string email = textBox4.Text.Trim();
             string senha = textBox3.Text.Trim();
 
@@ -143,6 +144,11 @@ namespace projetopr2
             Form7 form7 = new Form7();
             form7.Show();
             this.Hide();
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
