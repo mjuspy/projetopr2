@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace projetopr2
 {
-    public partial class Form2 : Form
+    public partial class criar_conta : Form
     {
-        public Form2()
+        public criar_conta()
         {
             InitializeComponent();
         }
@@ -24,7 +24,7 @@ namespace projetopr2
             }
 
             // Passa os dados para o Form6 e abre ele
-            Form6 form6 = new Form6(username, email, password);
+            entrega form6 = new entrega(username, email, password);
             form6.Show();
 
             // Esconde o Form2
@@ -33,7 +33,7 @@ namespace projetopr2
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
+            tela_login form1 = new tela_login();
             form1.Show();
             this.Hide();
         }
@@ -51,6 +51,11 @@ namespace projetopr2
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             // Se precisar colocar algo aqui, fica à vontade
+        }
+
+        private void pictureBox2_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

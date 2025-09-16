@@ -4,11 +4,11 @@ using System.Windows.Forms;
 
 namespace projetopr2
 {
-    public partial class Form4 : Form
+    public partial class cardapio : Form
     {
         private Panel catalogPanel;
 
-        public Form4()
+        public cardapio()
         {
             InitializeComponent();
 

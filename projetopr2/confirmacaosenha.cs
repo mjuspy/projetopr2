@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace projetopr2
 {
-    public partial class Form8: Form
+    public partial class confirmacaosenha: Form
     {
-        public Form8()
+        public confirmacaosenha()
         {
             InitializeComponent();
         }

@@ -12,9 +12,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace projetopr2
 {
-    public partial class Form1 : Form
+    public partial class tela_login : Form
     {
-        public Form1()
+        public tela_login()
         {
             InitializeComponent();
             try
@@ -24,7 +24,7 @@ namespace projetopr2
                 connetionString = @"Data Source=sqlexpress;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno";
                 cnn = new SqlConnection(connetionString);
                 cnn.Open();
-                MessageBox.Show("Connection Open !");
+              
                 cnn.Close();
             }
             catch (SqlException erro)
@@ -52,7 +52,7 @@ namespace projetopr2
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Form2 form2 = new Form2();
+            criar_conta form2 = new criar_conta();
 
             // Abre o Form3
             form2.Show();
@@ -93,7 +93,7 @@ namespace projetopr2
                         {
                             MessageBox.Show("Login realizado com sucesso!");
                             // Aqui você pode abrir a próxima tela ou continuar o fluxo
-                            Form3 form3 = new Form3();
+                            tela_inicial form3 = new tela_inicial();
                             form3.Show();
 
                             // Oculta a tela de login
@@ -134,19 +134,24 @@ namespace projetopr2
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Form5 form5 = new Form5();
+            redefinir_senha form5 = new redefinir_senha();
             form5.Show();
             this.Hide();
         }
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Form7 form7 = new Form7();
+            confirmacaosenha form7 = new confirmacaosenha();
             form7.Show();
             this.Hide();
         }
 
         private void pictureBox6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }

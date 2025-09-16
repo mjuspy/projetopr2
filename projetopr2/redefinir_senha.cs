@@ -11,12 +11,12 @@ using System.Windows.Forms;
 
 namespace projetopr2
 {
-    public partial class Form5 : Form
+    public partial class redefinir_senha : Form
     {
         // Coloque a string de conexão aqui
         private readonly string conexao = "Data Source=sqlexpress;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno";
 
-        public Form5()
+        public redefinir_senha()
         {
             InitializeComponent();
         }
@@ -75,7 +75,7 @@ namespace projetopr2
 
                     MessageBox.Show("Senha alterada com sucesso!");
 
-                    Form1 form1 = new Form1();
+                    tela_login form1 = new tela_login();
                     form1.Show();
                     this.Hide();
                 }
