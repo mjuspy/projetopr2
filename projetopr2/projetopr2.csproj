@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,76 +47,81 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="tela_login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="tela_login.Designer.cs">
+      <DependentUpon>tela_login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form3.cs">
+    <Compile Include="criar_conta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form3.Designer.cs">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <Compile Include="criar_conta.Designer.cs">
+      <DependentUpon>criar_conta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form4.cs">
+    <Compile Include="tela_inicial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form4.Designer.cs">
-      <DependentUpon>Form4.cs</DependentUpon>
+    <Compile Include="tela_inicial.Designer.cs">
+      <DependentUpon>tela_inicial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form5.cs">
+    <Compile Include="cardapio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form5.Designer.cs">
-      <DependentUpon>Form5.cs</DependentUpon>
+    <Compile Include="cardapio.Designer.cs">
+      <DependentUpon>cardapio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form6.cs">
+    <Compile Include="redefinir_senha.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form6.Designer.cs">
-      <DependentUpon>Form6.cs</DependentUpon>
+    <Compile Include="redefinir_senha.Designer.cs">
+      <DependentUpon>redefinir_senha.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form7.cs">
+    <Compile Include="confirmacaosenha.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form7.Designer.cs">
-      <DependentUpon>Form7.cs</DependentUpon>
+    <Compile Include="confirmacaosenha.Designer.cs">
+      <DependentUpon>confirmacaosenha.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form8.cs">
+    <Compile Include="endereco.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form8.Designer.cs">
-      <DependentUpon>Form8.cs</DependentUpon>
+    <Compile Include="endereco.Designer.cs">
+      <DependentUpon>endereco.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="confirmacaosenha.resx">
+      <DependentUpon>confirmacaosenha.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="tela_login.resx">
+      <DependentUpon>tela_login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form3.resx">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <EmbeddedResource Include="criar_conta.resx">
+      <DependentUpon>criar_conta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form4.resx">
-      <DependentUpon>Form4.cs</DependentUpon>
+    <EmbeddedResource Include="tela_inicial.resx">
+      <DependentUpon>tela_inicial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form5.resx">
-      <DependentUpon>Form5.cs</DependentUpon>
+    <EmbeddedResource Include="cardapio.resx">
+      <DependentUpon>cardapio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form6.resx">
-      <DependentUpon>Form6.cs</DependentUpon>
+    <EmbeddedResource Include="redefinir_senha.resx">
+      <DependentUpon>redefinir_senha.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form8.resx">
-      <DependentUpon>Form8.cs</DependentUpon>
+    <EmbeddedResource Include="endereco.resx">
+      <DependentUpon>endereco.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace projetopr2
 {
-    public partial class Form8: Form
+    public partial class endereco: Form
     {
-        public Form8()
+        public endereco()
         {
             InitializeComponent();
         }

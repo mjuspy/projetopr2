@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace projetopr2
 {
-    public partial class Form3 : Form
+    public partial class tela_inicial : Form
     {
-        public Form3()
+        public tela_inicial()
         {
             InitializeComponent();
         }
@@ -29,7 +30,7 @@ namespace projetopr2
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            Form4 form4 = new Form4();
+            cardapio form4 = new cardapio();
             form4.Show();
 
             // Oculta a tela de login
@@ -38,16 +39,28 @@ namespace projetopr2
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            Form7 form7 = new Form7();
-            form7.Show();
-            this.Hide();
+          
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
+            tela_login form1 = new tela_login();
             form1.Show();
             this.Hide();
         }
+            private void buttonPerfil_Click(object sender, EventArgs e)
+        {
+            if (!SessaoUsuario.Logado)
+            {
+                criar_conta criarConta = new criar_conta();
+                criarConta.Show();
+            }
+            else
+            {
+                Form1 perfil = new Form1();
+                perfil.Show();
+            }
+        }
+
     }
 }
