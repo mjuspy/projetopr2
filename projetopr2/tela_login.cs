@@ -18,8 +18,38 @@ namespace projetopr2
         public tela_login()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // Mostrar informações do usuário
+            labelNome.Text = SessaoUsuario.Nome;
+            labelEmail.Text = SessaoUsuario.Email;
+
+            // Carregar endereços
+            CarregarEnderecos();
+        }
+
+        private void CarregarEnderecos()
+        {
+            listBoxEnderecos.Items.Clear();
             try
             {
+<<<<<<<< HEAD:projetopr2/Form1.cs
+                using (var conn = new SqlConnection(@"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno"))
+                {
+                    conn.Open();
+                    var cmd = new SqlCommand("SELECT * FROM Enderecos WHERE IdCliente=@id", conn);
+                    cmd.Parameters.AddWithValue("@id", SessaoUsuario.Id);
+
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string endereco = $"{reader["Rua"]}, {reader["Numero"]} - {reader["Cidade"]}";
+                        listBoxEnderecos.Items.Add(endereco);
+                    }
+                }
+========
                 string connetionString;
                 SqlConnection cnn;
                 connetionString = @"Data Source=sqlexpress;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno";
@@ -27,6 +57,7 @@ namespace projetopr2
                 cnn.Open();
               
                 cnn.Close();
+>>>>>>>> 9ebf640eb0b47ffcf26f3c1acc1ff4b44fe3f105:projetopr2/tela_login.cs
             }
             catch (SqlException erro)
             {
@@ -38,7 +69,11 @@ namespace projetopr2
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
+            string novoEndereco = Interaction.InputBox("Digite o endereço no formato: Rua, Número - Cidade", "Adicionar Endereço");
 
+<<<<<<<< HEAD:projetopr2/Form1.cs
+            if (!string.IsNullOrWhiteSpace(novoEndereco))
+========
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -75,10 +110,13 @@ namespace projetopr2
             string connectionString = @"Data Source=sqlexpress;Initial Catalog=cj3027724pr2; User ID=aluno; Password=aluno";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
+>>>>>>>> 9ebf640eb0b47ffcf26f3c1acc1ff4b44fe3f105:projetopr2/tela_login.cs
             {
                 try
                 {
-                    conn.Open();
+                    using (var conn = new SqlConnection(@"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno"))
+                    {
+                        conn.Open();
 
                     // Query parametrizada para evitar SQL Injection
                     string sql = "SELECT COUNT(*) FROM cadastro WHERE email = @Email AND  senha = @Senha";
@@ -92,10 +130,18 @@ namespace projetopr2
 
                         if (count > 0)
                         {
+<<<<<<<< HEAD:projetopr2/Form1.cs
+                            cmd.Parameters.AddWithValue("@id", SessaoUsuario.Id);
+                            cmd.Parameters.AddWithValue("@rua", partes[0].Trim());
+                            cmd.Parameters.AddWithValue("@numero", partes[1].Trim());
+                            cmd.Parameters.AddWithValue("@cidade", partes[2].Trim());
+                            cmd.ExecuteNonQuery();
+========
                             MessageBox.Show("Login realizado com sucesso!");
                             // Aqui você pode abrir a próxima tela ou continuar o fluxo
                             tela_inicial form3 = new tela_inicial();
                             form3.Show();
+>>>>>>>> 9ebf640eb0b47ffcf26f3c1acc1ff4b44fe3f105:projetopr2/tela_login.cs
 
                             // Oculta a tela de login
                             this.Hide();
@@ -113,6 +159,10 @@ namespace projetopr2
                 }
             }
         }
+<<<<<<<< HEAD:projetopr2/Form1.cs
+
+        private void buttonRemoverEndereco_Click(object sender, EventArgs e)
+========
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -148,12 +198,43 @@ namespace projetopr2
         }
 
         private void pictureBox6_Click(object sender, EventArgs e)
+>>>>>>>> 9ebf640eb0b47ffcf26f3c1acc1ff4b44fe3f105:projetopr2/tela_login.cs
         {
+            if (listBoxEnderecos.SelectedItem != null)
+            {
+                string enderecoSelecionado = listBoxEnderecos.SelectedItem.ToString();
+                var confirm = MessageBox.Show($"Deseja remover o endereço:\n{enderecoSelecionado}?", "Remover Endereço", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
+                {
+                    try
+                    {
+                        using (var conn = new SqlConnection(@"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno"))
+                        {
+                            conn.Open();
+                            var partes = enderecoSelecionado.Split(new char[] { ',', '-' }, StringSplitOptions.RemoveEmptyEntries);
+                            if (partes.Length == 3)
+                            {
+                                var cmd = new SqlCommand(
+                                    "DELETE FROM Enderecos WHERE IdCliente=@id AND Rua=@rua AND Numero=@numero AND Cidade=@cidade", conn);
+                                cmd.Parameters.AddWithValue("@id", SessaoUsuario.Id);
+                                cmd.Parameters.AddWithValue("@rua", partes[0].Trim());
+                                cmd.Parameters.AddWithValue("@numero", partes[1].Trim());
+                                cmd.Parameters.AddWithValue("@cidade", partes[2].Trim());
+                                cmd.ExecuteNonQuery();
 
-        }
+                                CarregarEnderecos();
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao remover endereço: " + ex.Message);
+                    }
+                }
+            }
 
         private void Form1_Load(object sender, EventArgs e)
-        {
+            {
 
         }
 

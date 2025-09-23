@@ -28,6 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+<<<<<<<< HEAD:projetopr2/Form1.Designer.cs
+            this.labelNome = new System.Windows.Forms.Label();
+            this.labelEmail = new System.Windows.Forms.Label();
+            this.listBoxEnderecos = new System.Windows.Forms.ListBox();
+            this.buttonAdicionarEndereco = new System.Windows.Forms.Button();
+            this.buttonRemoverEndereco = new System.Windows.Forms.Button();
+========
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(tela_login));
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,6 +49,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+>>>>>>>> 9ebf640eb0b47ffcf26f3c1acc1ff4b44fe3f105:projetopr2/tela_login.Designer.cs
             this.SuspendLayout();
             // 
             // pictureBox2
@@ -56,6 +64,14 @@
             // 
             // label1
             // 
+<<<<<<<< HEAD:projetopr2/Form1.Designer.cs
+            this.labelEmail.AutoSize = true;
+            this.labelEmail.Location = new System.Drawing.Point(288, 137);
+            this.labelEmail.Name = "labelEmail";
+            this.labelEmail.Size = new System.Drawing.Size(35, 13);
+            this.labelEmail.TabIndex = 1;
+            this.labelEmail.Text = "label2";
+========
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(193)))), ((int)(((byte)(158)))));
             this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -65,9 +81,17 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "Não tem uma conta?\r\n       Clique ";
             this.label1.Click += new System.EventHandler(this.label1_Click);
+>>>>>>>> 9ebf640eb0b47ffcf26f3c1acc1ff4b44fe3f105:projetopr2/tela_login.Designer.cs
             // 
             // linkLabel1
             // 
+<<<<<<<< HEAD:projetopr2/Form1.Designer.cs
+            this.listBoxEnderecos.FormattingEnabled = true;
+            this.listBoxEnderecos.Location = new System.Drawing.Point(328, 253);
+            this.listBoxEnderecos.Name = "listBoxEnderecos";
+            this.listBoxEnderecos.Size = new System.Drawing.Size(120, 95);
+            this.listBoxEnderecos.TabIndex = 2;
+========
             this.linkLabel1.AutoEllipsis = true;
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(193)))), ((int)(((byte)(158)))));
@@ -82,9 +106,18 @@
             this.linkLabel1.Text = "aqui";
             this.linkLabel1.VisitedLinkColor = System.Drawing.Color.DarkRed;
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+>>>>>>>> 9ebf640eb0b47ffcf26f3c1acc1ff4b44fe3f105:projetopr2/tela_login.Designer.cs
             // 
             // continuar
             // 
+<<<<<<<< HEAD:projetopr2/Form1.Designer.cs
+            this.buttonAdicionarEndereco.Location = new System.Drawing.Point(98, 95);
+            this.buttonAdicionarEndereco.Name = "buttonAdicionarEndereco";
+            this.buttonAdicionarEndereco.Size = new System.Drawing.Size(75, 23);
+            this.buttonAdicionarEndereco.TabIndex = 3;
+            this.buttonAdicionarEndereco.Text = "button1";
+            this.buttonAdicionarEndereco.UseVisualStyleBackColor = true;
+========
             this.continuar.BackColor = System.Drawing.Color.White;
             this.continuar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.continuar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -97,9 +130,18 @@
             this.continuar.Text = "continuar ";
             this.continuar.UseVisualStyleBackColor = false;
             this.continuar.Click += new System.EventHandler(this.button1_Click);
+>>>>>>>> 9ebf640eb0b47ffcf26f3c1acc1ff4b44fe3f105:projetopr2/tela_login.Designer.cs
             // 
             // textBox4
             // 
+<<<<<<<< HEAD:projetopr2/Form1.Designer.cs
+            this.buttonRemoverEndereco.Location = new System.Drawing.Point(98, 137);
+            this.buttonRemoverEndereco.Name = "buttonRemoverEndereco";
+            this.buttonRemoverEndereco.Size = new System.Drawing.Size(75, 23);
+            this.buttonRemoverEndereco.TabIndex = 4;
+            this.buttonRemoverEndereco.Text = "button2";
+            this.buttonRemoverEndereco.UseVisualStyleBackColor = true;
+========
             this.textBox4.BackColor = System.Drawing.Color.White;
             this.textBox4.Font = new System.Drawing.Font("Arial Unicode MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.Location = new System.Drawing.Point(773, 463);
@@ -176,6 +218,7 @@
             this.linkLabel3.Text = "Cadastro para funcinários";
             this.linkLabel3.VisitedLinkColor = System.Drawing.Color.DarkRed;
             this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
+>>>>>>>> 9ebf640eb0b47ffcf26f3c1acc1ff4b44fe3f105:projetopr2/tela_login.Designer.cs
             // 
             // pictureBox1
             // 
@@ -192,6 +235,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<<< HEAD:projetopr2/Form1.Designer.cs
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonRemoverEndereco);
+            this.Controls.Add(this.buttonAdicionarEndereco);
+            this.Controls.Add(this.listBoxEnderecos);
+            this.Controls.Add(this.labelEmail);
+            this.Controls.Add(this.labelNome);
+            this.Name = "Form1";
+            this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
+========
             this.ClientSize = new System.Drawing.Size(1838, 1061);
             this.Controls.Add(this.linkLabel3);
             this.Controls.Add(this.linkLabel2);
@@ -210,12 +264,15 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+>>>>>>>> 9ebf640eb0b47ffcf26f3c1acc1ff4b44fe3f105:projetopr2/tela_login.Designer.cs
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
+<<<<<<<< HEAD:projetopr2/Form1.Designer.cs
+========
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.LinkLabel linkLabel1;
@@ -229,4 +286,12 @@
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
+>>>>>>>> 9ebf640eb0b47ffcf26f3c1acc1ff4b44fe3f105:projetopr2/tela_login.Designer.cs
 
+        private System.Windows.Forms.Label labelNome;
+        private System.Windows.Forms.Label labelEmail;
+        private System.Windows.Forms.ListBox listBoxEnderecos;
+        private System.Windows.Forms.Button buttonAdicionarEndereco;
+        private System.Windows.Forms.Button buttonRemoverEndereco;
+    }
+}

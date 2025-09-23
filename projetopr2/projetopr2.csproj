@@ -51,8 +51,8 @@
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="tela_login.Designer.cs">
+      <DependentUpon>tela_login.cs</DependentUpon>
     </Compile>
     <Compile Include="tela_login.cs">
       <SubType>Form</SubType>

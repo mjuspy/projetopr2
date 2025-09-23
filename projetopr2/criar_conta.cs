@@ -31,14 +31,14 @@ namespace projetopr2
             {
                 MessageBox.Show("As senhas não coincidem.");
                 return;
-            }
+        }
 
             // Gera código de 6 dígitos
             Random rnd = new Random();
             string tokenConfirmacao = rnd.Next(100000, 999999).ToString();
 
             try
-            {
+        {
                 // Salva no banco de dados
                 using (var conn = new SqlConnection(@"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno"))
                 {
@@ -53,7 +53,7 @@ namespace projetopr2
                     cmd.Parameters.AddWithValue("@token", tokenConfirmacao);
 
                     cmd.ExecuteNonQuery();
-                }
+        }
 
                 // Envia email estilizado com HTML
                 EnviarEmailConfirmacao(email, username, tokenConfirmacao);
@@ -66,7 +66,7 @@ namespace projetopr2
                 this.Hide();
             }
             catch (Exception ex)
-            {
+        {
                 MessageBox.Show("Erro ao criar conta: " + ex.Message);
             }
         }
@@ -74,7 +74,7 @@ namespace projetopr2
         private void EnviarEmailConfirmacao(string email, string nome, string token)
         {
             using (var smtp = new SmtpClient("smtp.gmail.com", 587))
-            {
+        {
                 smtp.Credentials = new System.Net.NetworkCredential(
                     "cienfleuroux@gmail.com", // seu e-mail
                     "nekc osbg gkcy ajqo"        // senha de app do Gmail
