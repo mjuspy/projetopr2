@@ -64,6 +64,11 @@ namespace projetopr2
             carrinho.Clear();
             AtualizarCarrinho();
         }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
     // Classe Produto
