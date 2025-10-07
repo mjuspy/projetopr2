@@ -1,4 +1,5 @@
-﻿using projetopr2;
+﻿using Microsoft.VisualBasic;
+using projetopr2;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,7 +36,7 @@ namespace projetopr2
             listBoxEnderecos.Items.Clear();
             try
             {
-<<<<<<<< HEAD:projetopr2/Form1.cs
+
                 using (var conn = new SqlConnection(@"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno"))
                 {
                     conn.Open();
@@ -49,15 +50,13 @@ namespace projetopr2
                         listBoxEnderecos.Items.Add(endereco);
                     }
                 }
-========
-                string connetionString;
+                string connetionString = @"Data Source=sqlexpress;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno";
                 SqlConnection cnn;
-                connetionString = @"Data Source=sqlexpress;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno";
+                
                 cnn = new SqlConnection(connetionString);
                 cnn.Open();
-              
+
                 cnn.Close();
->>>>>>>> 9ebf640eb0b47ffcf26f3c1acc1ff4b44fe3f105:projetopr2/tela_login.cs
             }
             catch (SqlException erro)
             {
@@ -71,9 +70,9 @@ namespace projetopr2
         {
             string novoEndereco = Interaction.InputBox("Digite o endereço no formato: Rua, Número - Cidade", "Adicionar Endereço");
 
-<<<<<<<< HEAD:projetopr2/Form1.cs
-            if (!string.IsNullOrWhiteSpace(novoEndereco))
-========
+
+            if (!string.IsNullOrWhiteSpace(novoEndereco)) ;
+
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -110,13 +109,11 @@ namespace projetopr2
             string connectionString = @"Data Source=sqlexpress;Initial Catalog=cj3027724pr2; User ID=aluno; Password=aluno";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
->>>>>>>> 9ebf640eb0b47ffcf26f3c1acc1ff4b44fe3f105:projetopr2/tela_login.cs
+
             {
                 try
                 {
-                    using (var conn = new SqlConnection(@"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno"))
-                    {
-                        conn.Open();
+                    conn.Open();
 
                     // Query parametrizada para evitar SQL Injection
                     string sql = "SELECT COUNT(*) FROM cadastro WHERE email = @Email AND  senha = @Senha";
@@ -130,18 +127,17 @@ namespace projetopr2
 
                         if (count > 0)
                         {
-<<<<<<<< HEAD:projetopr2/Form1.cs
+
                             cmd.Parameters.AddWithValue("@id", SessaoUsuario.Id);
-                            cmd.Parameters.AddWithValue("@rua", partes[0].Trim());
-                            cmd.Parameters.AddWithValue("@numero", partes[1].Trim());
-                            cmd.Parameters.AddWithValue("@cidade", partes[2].Trim());
+                            //cmd.Parameters.AddWithValue("@rua", partes[0].Trim());
+                            //cmd.Parameters.AddWithValue("@numero", partes[1].Trim());
+                            //cmd.Parameters.AddWithValue("@cidade", partes[2].Trim());
                             cmd.ExecuteNonQuery();
-========
+
                             MessageBox.Show("Login realizado com sucesso!");
                             // Aqui você pode abrir a próxima tela ou continuar o fluxo
                             tela_inicial form3 = new tela_inicial();
                             form3.Show();
->>>>>>>> 9ebf640eb0b47ffcf26f3c1acc1ff4b44fe3f105:projetopr2/tela_login.cs
 
                             // Oculta a tela de login
                             this.Hide();
@@ -159,10 +155,7 @@ namespace projetopr2
                 }
             }
         }
-<<<<<<<< HEAD:projetopr2/Form1.cs
 
-        private void buttonRemoverEndereco_Click(object sender, EventArgs e)
-========
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -198,7 +191,7 @@ namespace projetopr2
         }
 
         private void pictureBox6_Click(object sender, EventArgs e)
->>>>>>>> 9ebf640eb0b47ffcf26f3c1acc1ff4b44fe3f105:projetopr2/tela_login.cs
+
         {
             if (listBoxEnderecos.SelectedItem != null)
             {
@@ -232,11 +225,12 @@ namespace projetopr2
                     }
                 }
             }
-
-        private void Form1_Load(object sender, EventArgs e)
-            {
-
         }
+
+        //private void Form1_Load(object sender, EventArgs e)
+        //{
+
+        //}
 
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {

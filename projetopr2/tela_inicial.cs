@@ -57,10 +57,13 @@ namespace projetopr2
             }
             else
             {
-                Form1 perfil = new Form1();
-                perfil.Show();
+               
             }
         }
 
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
