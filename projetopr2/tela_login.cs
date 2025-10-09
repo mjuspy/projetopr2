@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualBasic;
+using Microsoft.VisualBasic;
 using projetopr2;
 using System;
 using System.Collections.Generic;
@@ -16,6 +16,8 @@ namespace projetopr2
 {
     public partial class tela_login : Form
     {
+        string connetionString = @"Data Source=sqlexpress;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno";
+      
         public tela_login()
         {
             InitializeComponent();
@@ -40,9 +42,8 @@ namespace projetopr2
                 using (var conn = new SqlConnection(@"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno"))
                 {
                     conn.Open();
-                    var cmd = new SqlCommand("SELECT * FROM Enderecos WHERE IdCliente=@id", conn);
+                    var cmd = new SqlCommand("SELECT * FROM Enderecos WHERE cod_cliente=@id", conn);
                     cmd.Parameters.AddWithValue("@id", SessaoUsuario.Id);
-
                     var reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
@@ -50,7 +51,7 @@ namespace projetopr2
                         listBoxEnderecos.Items.Add(endereco);
                     }
                 }
-                string connetionString = @"Data Source=sqlexpress;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno";
+               
                 SqlConnection cnn;
                 
                 cnn = new SqlConnection(connetionString);
@@ -128,18 +129,17 @@ namespace projetopr2
                         if (count > 0)
                         {
 
-                            cmd.Parameters.AddWithValue("@id", SessaoUsuario.Id);
+                            //cmd.Parameters.AddWithValue("@id", SessaoUsuario.Id);
                             //cmd.Parameters.AddWithValue("@rua", partes[0].Trim());
                             //cmd.Parameters.AddWithValue("@numero", partes[1].Trim());
                             //cmd.Parameters.AddWithValue("@cidade", partes[2].Trim());
                             cmd.ExecuteNonQuery();
 
                             MessageBox.Show("Login realizado com sucesso!");
-                            // Aqui você pode abrir a próxima tela ou continuar o fluxo
+                          
                             tela_inicial form3 = new tela_inicial();
                             form3.Show();
 
-                            // Oculta a tela de login
                             this.Hide();
                         }
                         else
