@@ -7,6 +7,9 @@ namespace projetopr2
 {
     public partial class criar_conta : Form
     {
+        // ✅ String de conexão com autenticação do Windows
+        string conexaoString = @"Data Source=PCZAO;Initial Catalog=cj3027724pr2;Integrated Security=True;";
+
         public criar_conta()
         {
             InitializeComponent();
@@ -19,7 +22,7 @@ namespace projetopr2
             string password = textBox3.Text.Trim();
             string confirmarSenha = textBox4.Text.Trim();
 
-            // Validação de campos
+            // 🔸 Validação básica
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(email) ||
                 string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmarSenha))
             {
@@ -31,65 +34,68 @@ namespace projetopr2
             {
                 MessageBox.Show("As senhas não coincidem.");
                 return;
-        }
+            }
 
-            // Gera código de 6 dígitos
+            // 🔹 Gera código de confirmação (token)
             Random rnd = new Random();
             string tokenConfirmacao = rnd.Next(100000, 999999).ToString();
 
             try
-        {
-                // Salva no banco de dados
-                using (var conn = new SqlConnection(@"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno"))
+            {
+                // ✅ Salva no banco de dados com autenticação do Windows
+                using (SqlConnection conn = new SqlConnection(conexaoString))
                 {
                     conn.Open();
-                    var cmd = new SqlCommand(
-                        "INSERT INTO cadastro (Nome, Email, Senha, EmailConfirmado, TokenConfirmacao) " +
-                        "VALUES (@nome, @email, @senha, 0, @token)", conn);
+                    string query = @"INSERT INTO cadastro 
+                                    (Nome, Email, Senha, EmailConfirmado, TokenConfirmacao) 
+                                    VALUES (@nome, @email, @senha, 0, @token)";
 
-                    cmd.Parameters.AddWithValue("@nome", username);
-                    cmd.Parameters.AddWithValue("@email", email);
-                    cmd.Parameters.AddWithValue("@senha", password); // ⚠️ futuramente use hash
-                    cmd.Parameters.AddWithValue("@token", tokenConfirmacao);
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@nome", username);
+                        cmd.Parameters.AddWithValue("@email", email);
+                        cmd.Parameters.AddWithValue("@senha", password); // ⚠️ depois usar hash
+                        cmd.Parameters.AddWithValue("@token", tokenConfirmacao);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
 
-                    cmd.ExecuteNonQuery();
-        }
-
-                // Envia email estilizado com HTML
+                // ✅ Envia email com o código de confirmação
                 EnviarEmailConfirmacao(email, username, tokenConfirmacao);
 
                 MessageBox.Show($"Conta criada! Um código de confirmação foi enviado para {email}.");
 
-                // Abre a tela de confirmação de token
-                confirmacaosenha confirmar = new confirmacaosenha(email);
-                confirmar.Show();
+                // ✅ Abre a tela de confirmação (Form)
+                confimacaosenha frm = new confimacaosenha(email);
+                frm.ShowDialog();
+
                 this.Hide();
             }
             catch (Exception ex)
-        {
+            {
                 MessageBox.Show("Erro ao criar conta: " + ex.Message);
             }
         }
 
+        // 🔹 Envio do email
         private void EnviarEmailConfirmacao(string email, string nome, string token)
         {
             using (var smtp = new SmtpClient("smtp.gmail.com", 587))
-        {
+            {
                 smtp.Credentials = new System.Net.NetworkCredential(
-                    "cienfleuroux@gmail.com", // seu e-mail
-                    "nekc osbg gkcy ajqo"        // senha de app do Gmail
+                    "cienfleuroux@gmail.com",      // seu e-mail
+                    "nekc osbg gkcy ajqo"          // senha de app (não a senha normal)
                 );
                 smtp.EnableSsl = true;
 
                 var mail = new MailMessage("cienfleuroux@gmail.com", email);
-                mail.Subject = "Confirme sua conta - Café do Dia";
+                mail.Subject = "Confirme sua conta - Cien Fleur";
 
-                // Corpo em HTML
                 mail.Body = $@"
 <html>
 <body style='font-family: Arial, sans-serif; background-color:#f9f9f9; padding:20px;'>
   <div style='max-width:600px; margin:auto; background-color:#ffffff; border-radius:10px; padding:30px; text-align:center; box-shadow:0 0 10px rgba(0,0,0,0.1);'>
-    <h2 style='color:#6b4226;'>Bem-vindo ao CienFleur!!</h2>
+    <h2 style='color:#6b4226;'>Bem-vindo ao Cien Fleur ☕</h2>
     <p>Olá <strong>{nome}</strong>,</p>
     <p>Para concluir seu cadastro, use o código de verificação abaixo:</p>
     <h1 style='background-color:#ffdf7e; color:#6b4226; padding:15px; border-radius:10px; display:inline-block;'>{token}</h1>
@@ -99,14 +105,14 @@ namespace projetopr2
     <p style='font-size:12px; color:#888888;'>Equipe Cien Fleur ☕</p>
   </div>
 </body>
-</html>
-";
+</html>";
 
                 mail.IsBodyHtml = true;
                 smtp.Send(mail);
             }
         }
 
+        // 🔹 Botão para voltar ao login
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             tela_login form1 = new tela_login();
@@ -114,7 +120,7 @@ namespace projetopr2
             this.Hide();
         }
 
-        // Eventos extras do Designer tratados como vazios
+        // 🔸 Eventos vazios do Designer
         private void label1_Click(object sender, EventArgs e) { }
         private void label2_Click(object sender, EventArgs e) { }
         private void label3_Click(object sender, EventArgs e) { }

@@ -18,7 +18,7 @@ namespace projetopr2
 
             this.Controls.Add(catalogPanel);
         }
-
+        
        
             private void Form4_Load(object sender, EventArgs e)
         {
@@ -42,6 +42,13 @@ namespace projetopr2
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            cardapio1 frm = new cardapio1();
+            frm.ShowDialog();
+            this.Close();
         }
     }
 }

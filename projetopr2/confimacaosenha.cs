@@ -1,17 +1,29 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace projetopr2
 {
-    public partial class confirmacaosenha : Form
+    public partial class confimacaosenha : Form
     {
         private string emailUsuario;
-
-        public confirmacaosenha(string email)
+        public confimacaosenha(string email)
         {
             InitializeComponent();
             emailUsuario = email;
+        }
+       
+       
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void buttonConfirmar_Click(object sender, EventArgs e)
@@ -66,9 +78,9 @@ namespace projetopr2
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void confimacaosenha_Load(object sender, EventArgs e)
         {
-            // voltar para a tela anterior se desejar
+
         }
     }
 }

@@ -48,6 +48,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="confimacaosenha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="confimacaosenha.Designer.cs">
+      <DependentUpon>confimacaosenha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cardapio1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="cardapio1.Designer.cs">
+      <DependentUpon>cardapio1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,12 +99,6 @@
     <Compile Include="redefinir_senha.Designer.cs">
       <DependentUpon>redefinir_senha.cs</DependentUpon>
     </Compile>
-    <Compile Include="confirmacaosenha.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="confirmacaosenha.Designer.cs">
-      <DependentUpon>confirmacaosenha.cs</DependentUpon>
-    </Compile>
     <Compile Include="endereco.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,9 +107,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="confirmacaosenha.resx">
-      <DependentUpon>confirmacaosenha.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="cardapio1.resx">
+      <DependentUpon>cardapio1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="confimacaosenha.resx">
+      <DependentUpon>confimacaosenha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
