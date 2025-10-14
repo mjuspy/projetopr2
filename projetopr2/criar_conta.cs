@@ -8,7 +8,10 @@ namespace projetopr2
     public partial class criar_conta : Form
     {
         // ✅ String de conexão com autenticação do Windows
-        string conexaoString = @"Data Source=PCZAO;Initial Catalog=cj3027724pr2;Integrated Security=True;";
+        //string conexaoString = @"Data Source=PCZAO;Initial Catalog=cj3027724pr2;Integrated Security=True;";
+
+        // CONEXAO NO IF
+        string conexaoString = @"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno";
 
         public criar_conta()
         {

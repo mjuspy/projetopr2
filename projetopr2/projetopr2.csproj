@@ -60,12 +60,19 @@
     <Compile Include="cardapio1.Designer.cs">
       <DependentUpon>cardapio1.cs</DependentUpon>
     </Compile>
+    <Compile Include="pedidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pedidos.Designer.cs">
+      <DependentUpon>pedidos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form2.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="SessaoUsuario.cs" />
     <Compile Include="tela_login.Designer.cs">
       <DependentUpon>tela_login.cs</DependentUpon>
     </Compile>
@@ -115,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pedidos.resx">
+      <DependentUpon>pedidos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="tela_login.resx">
       <DependentUpon>tela_login.cs</DependentUpon>

@@ -16,10 +16,10 @@ namespace projetopr2
     public partial class tela_login : Form
     {
         // 🔹 Conexão antiga (autenticação SQL) — mantida comentada
-        // string connetionString = @"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno";
+        string connectionStringWindows = @"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno";
 
         // 🔹 Nova conexão (autenticação do Windows)
-        string connectionStringWindows = @"Data Source=PCZAO;Initial Catalog=cj3027724pr2;Integrated Security=True;";
+        //string connectionStringWindows = @"Data Source=PCZAO;Initial Catalog=cj3027724pr2;Integrated Security=True;";
 
         public tela_login()
         {

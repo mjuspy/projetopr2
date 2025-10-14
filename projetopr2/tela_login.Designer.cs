@@ -55,6 +55,7 @@
             this.labelNome.Name = "labelNome";
             this.labelNome.Size = new System.Drawing.Size(100, 23);
             this.labelNome.TabIndex = 5;
+            this.labelNome.Visible = false;
             // 
             // labelEmail
             // 
@@ -64,14 +65,16 @@
             this.labelEmail.Size = new System.Drawing.Size(35, 13);
             this.labelEmail.TabIndex = 1;
             this.labelEmail.Text = "label2";
+            this.labelEmail.Visible = false;
             // 
             // listBoxEnderecos
             // 
             this.listBoxEnderecos.FormattingEnabled = true;
-            this.listBoxEnderecos.Location = new System.Drawing.Point(328, 253);
+            this.listBoxEnderecos.Location = new System.Drawing.Point(111, 224);
             this.listBoxEnderecos.Name = "listBoxEnderecos";
             this.listBoxEnderecos.Size = new System.Drawing.Size(120, 95);
             this.listBoxEnderecos.TabIndex = 2;
+            this.listBoxEnderecos.Visible = false;
             // 
             // buttonAdicionarEndereco
             // 
@@ -81,6 +84,7 @@
             this.buttonAdicionarEndereco.TabIndex = 3;
             this.buttonAdicionarEndereco.Text = "button1";
             this.buttonAdicionarEndereco.UseVisualStyleBackColor = true;
+            this.buttonAdicionarEndereco.Visible = false;
             // 
             // buttonRemoverEndereco
             // 
@@ -90,6 +94,7 @@
             this.buttonRemoverEndereco.TabIndex = 4;
             this.buttonRemoverEndereco.Text = "button2";
             this.buttonRemoverEndereco.UseVisualStyleBackColor = true;
+            this.buttonRemoverEndereco.Visible = false;
             // 
             // pictureBox2
             // 

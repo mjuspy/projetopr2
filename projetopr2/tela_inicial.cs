@@ -25,7 +25,7 @@ namespace projetopr2
 
         private void button1_Click(object sender, EventArgs e)
         {
-          
+
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -38,10 +38,25 @@ namespace projetopr2
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
+        { }
+private void btnVerPedidos_Click(object sender, EventArgs e)
         {
-          
-        }
+            if (SessaoUsuari.IsLoggedIn)
+            {
+                // Se o usuário está logado, abre a tela de pedidos.
+                pedidos formPedidos = new pedidos();
+                formPedidos.Show();
+            }
+            else
+            {
+                // Se não está logado, exibe a mensagem e abre a tela de login.
+                MessageBox.Show("Para visualizar seus pedidos, efetue o login.", "Acesso Restrito", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
+                tela_login formLogin = new tela_login(); // Supondo que sua tela se chame tela_login
+                formLogin.ShowDialog(); // ShowDialog impede o usuário de clicar em outras janelas.
+            }
+        }
+    
         private void pictureBox4_Click(object sender, EventArgs e)
         {
             tela_login form1 = new tela_login();
