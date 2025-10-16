@@ -1,29 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace projetopr2
 {
     public partial class confimacaosenha : Form
     {
+        private string nomeUsuario;
         private string emailUsuario;
-        public confimacaosenha(string email)
+        private string senhaUsuario;
+        private string tokenGerado;
+
+        // >>> Construtor novo que aceita 4 argumentos (nome, email, senha, token)
+        public confimacaosenha(string nome, string email, string senha, string token)
         {
             InitializeComponent();
+            nomeUsuario = nome;
             emailUsuario = email;
+            senhaUsuario = senha;
+            tokenGerado = token;
         }
-       
-       
+
+        // Se você também precisar manter o construtor padrão (designer), pode deixar:
+        public confimacaosenha()
+        {
+            InitializeComponent();
+        }
+        // <<< fim dos construtores
+
+        private void confimacaosenha_Load(object sender, EventArgs e)
+        {
+            // Você pode, se quiser, mostrar parte do email na tela:
+            // labelInfo.Text = $"Código enviado para: {emailUsuario}";
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
+            // evento do designer (vazio por enquanto)
         }
 
         private void buttonConfirmar_Click(object sender, EventArgs e)
@@ -36,51 +49,60 @@ namespace projetopr2
                 return;
             }
 
-            try
+            if (tokenDigitado == tokenGerado)
             {
-                using (var conn = new SqlConnection(@"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno"))
+                try
                 {
-                    conn.Open();
-
-                    // Verifica se o token é válido
-                    var cmd = new SqlCommand(
-                        "SELECT COUNT(*) FROM cadastro WHERE Email=@Email AND TokenConfirmacao=@Token", conn);
-
-                    cmd.Parameters.AddWithValue("@Email", emailUsuario);
-                    cmd.Parameters.AddWithValue("@Token", tokenDigitado);
-
-                    int resultado = (int)cmd.ExecuteScalar();
-
-                    if (resultado > 0)
+                    using (var conn = new SqlConnection(@"Data Source=PCZAO;Initial Catalog=cj3027724pr2;Integrated Security=True;"))
                     {
-                        // Atualiza EmailConfirmado
-                        var cmdUpdate = new SqlCommand(
-                            "UPDATE cadastro SET EmailConfirmado=1 WHERE Email=@Email", conn);
-                        cmdUpdate.Parameters.AddWithValue("@Email", emailUsuario);
-                        cmdUpdate.ExecuteNonQuery();
+                        conn.Open();
 
-                        MessageBox.Show("E-mail confirmado com sucesso!");
+                        // Antes de inserir, opcionalmente verifique se o email já não existe
+                        var checkCmd = new SqlCommand("SELECT COUNT(*) FROM cadastro WHERE Email = @Email", conn);
+                        checkCmd.Parameters.AddWithValue("@Email", emailUsuario);
+                        int exists = (int)checkCmd.ExecuteScalar();
+                        if (exists > 0)
+                        {
+                            MessageBox.Show("Este e-mail já está cadastrado.");
+                            return;
+                        }
 
-                        // Abre a tela inicial
-                        tela_inicial telaInicial = new tela_inicial();
-                        telaInicial.Show();
-                        this.Hide();
+                        // Insere usuário confirmado
+                        var cmd = new SqlCommand(
+                            "INSERT INTO cadastro (Nome, Email, Senha, EmailConfirmado, TokenConfirmacao) VALUES (@Nome, @Email, @Senha, 1, @Token)",
+                            conn);
+
+                        cmd.Parameters.AddWithValue("@Nome", nomeUsuario);
+                        cmd.Parameters.AddWithValue("@Email", emailUsuario);
+                        cmd.Parameters.AddWithValue("@Senha", senhaUsuario);
+                        cmd.Parameters.AddWithValue("@Token", tokenGerado);
+
+                        cmd.ExecuteNonQuery();
                     }
-                    else
-                    {
-                        MessageBox.Show("Código incorreto. Verifique o e-mail.");
-                    }
+
+                    MessageBox.Show("Conta confirmada e criada com sucesso!");
+
+                    tela_login telaLogin = new tela_login();
+                    telaLogin.Show();
+                    this.Hide();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao criar conta: " + ex.Message);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Erro ao confirmar: " + ex.Message);
+                MessageBox.Show("Código incorreto. Verifique o e-mail.");
             }
         }
 
-        private void confimacaosenha_Load(object sender, EventArgs e)
+        private void pictureBox2_Click(object sender, EventArgs e)
         {
-
+            // Se quiser voltar ao login sem confirmar:
+            tela_login login = new tela_login();
+            login.Show();
+            this.Hide();
         }
     }
 }

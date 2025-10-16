@@ -16,10 +16,10 @@ namespace projetopr2
     public partial class tela_login : Form
     {
         // 🔹 Conexão antiga (autenticação SQL) — mantida comentada
-        string connectionStringWindows = @"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno";
+        //string connectionStringWindows = @"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno";
 
         // 🔹 Nova conexão (autenticação do Windows)
-        //string connectionStringWindows = @"Data Source=PCZAO;Initial Catalog=cj3027724pr2;Integrated Security=True;";
+        string connectionStringWindows = @"Data Source=PCZAO;Initial Catalog=cj3027724pr2;Integrated Security=True;";
 
         public tela_login()
         {
@@ -114,68 +114,89 @@ namespace projetopr2
 
             try
             {
-                // 🔹 Nova conexão com autenticação do Windows
                 using (SqlConnection conn = new SqlConnection(connectionStringWindows))
                 {
                     conn.Open();
 
-                    string sql = "SELECT COUNT(*) FROM cadastro WHERE email = @Email AND senha = @Senha";
+                    // Note que ajustei os nomes das colunas para serem EXATAMENTE como no seu SQL (tudo minúsculo)
+                    // Isso evita erros de "nome de coluna não encontrado".
+                    string sql = "SELECT [cod_cliente], [nome], [email] FROM [cadastro] WHERE [email] = @Email AND [senha] = @Senha";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@Email", email);
                         cmd.Parameters.AddWithValue("@Senha", senha);
 
-                        int count = (int)cmd.ExecuteScalar();
+                        SqlDataReader reader = cmd.ExecuteReader();
 
-                        if (count > 0)
+                        if (reader.Read())
                         {
-                            MessageBox.Show("Login realizado com sucesso!");
+                            Usuario usuarioLogado = new Usuario
+                            {
+                                Id = Convert.ToInt32(reader["cod_cliente"]),
+                                Nome = reader["nome"].ToString(),
+                                Email = reader["email"].ToString()
+                            };
 
-                            tela_inicial form3 = new tela_inicial();
-                            form3.Show();
+                            SessaoUsuario1.Login(usuarioLogado);
+
+                            MessageBox.Show($"Bem-vindo(a), {usuarioLogado.Nome}!");
+
+                            // ✅ Ao invés de fechar a tela, abrimos a tela inicial
+                            tela_inicial telaInicial = new tela_inicial();
+                            telaInicial.Show();
                             this.Hide();
                         }
+
+                    
                         else
                         {
                             MessageBox.Show("Email ou senha inválidos.");
                         }
                     }
                 }
-
-                // 🔸 Código antigo de conexão (mantido comentado)
-                /*
-                using (SqlConnection conn = new SqlConnection(@"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno"))
-                {
-                    conn.Open();
-                    string sql = "SELECT COUNT(*) FROM cadastro WHERE Email = @Email AND Senha = @Senha";
-
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@Email", email);
-                        cmd.Parameters.AddWithValue("@Senha", senha);
-                        int count = (int)cmd.ExecuteScalar();
-
-                        if (count > 0)
-                        {
-                            MessageBox.Show("Login realizado com sucesso!");
-                            tela_inicial form3 = new tela_inicial();
-                            form3.Show();
-                            this.Hide();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Email ou senha inválidos.");
-                        }
-                    }
-                }
-                */
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao conectar ao banco de dados: " + ex.Message);
             }
         }
+
+        // 🔸 Código antigo de conexão (mantido comentado)
+        /*
+        using (SqlConnection conn = new SqlConnection(@"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno"))
+        {
+            conn.Open();
+            string sql = "SELECT COUNT(*) FROM cadastro WHERE Email = @Email AND Senha = @Senha";
+
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Senha", senha);
+                int count = (int)cmd.ExecuteScalar();
+
+                if (count > 0)
+                {
+                    MessageBox.Show("Login realizado com sucesso!");
+                    tela_inicial form3 = new tela_inicial();
+                    form3.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Email ou senha inválidos.");
+                }
+            }
+        }
+        */
+    //}
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Erro ao conectar ao banco de dados: " + ex.Message);
+        //    }
+        //}
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {

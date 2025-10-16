@@ -38,7 +38,11 @@ namespace projetopr2
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
-        { }
+        {
+        pedidos form6 = new pedidos();
+            form6.Show();
+            this.Hide();
+                }
 private void btnVerPedidos_Click(object sender, EventArgs e)
         {
             if (SessaoUsuari.IsLoggedIn)

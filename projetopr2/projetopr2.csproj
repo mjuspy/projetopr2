@@ -73,6 +73,7 @@
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
     <Compile Include="SessaoUsuario.cs" />
+    <Compile Include="SessaoUsuario1.cs" />
     <Compile Include="tela_login.Designer.cs">
       <DependentUpon>tela_login.cs</DependentUpon>
     </Compile>
@@ -114,6 +115,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Usuario.cs" />
     <EmbeddedResource Include="cardapio1.resx">
       <DependentUpon>cardapio1.cs</DependentUpon>
     </EmbeddedResource>

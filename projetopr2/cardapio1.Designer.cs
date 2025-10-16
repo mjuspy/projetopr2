@@ -287,6 +287,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "cardapio1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.cardapio1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidadeExpresso)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidadeCappuccinoItaliano)).EndInit();

@@ -51,6 +51,7 @@
             // dgvCarrinho
             // 
             this.dgvCarrinho.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(223)))), ((int)(((byte)(181)))));
+            this.dgvCarrinho.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
             this.dgvCarrinho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCarrinho.GridColor = System.Drawing.SystemColors.ControlDarkDark;
             this.dgvCarrinho.Location = new System.Drawing.Point(289, 336);
@@ -61,6 +62,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(223)))), ((int)(((byte)(181)))));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(-20, -1);
             this.pictureBox1.Name = "pictureBox1";
@@ -75,7 +77,7 @@
             this.lblSubtotal.AutoSize = true;
             this.lblSubtotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(223)))), ((int)(((byte)(181)))));
             this.lblSubtotal.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubtotal.Location = new System.Drawing.Point(1274, 429);
+            this.lblSubtotal.Location = new System.Drawing.Point(1274, 441);
             this.lblSubtotal.Name = "lblSubtotal";
             this.lblSubtotal.Size = new System.Drawing.Size(113, 31);
             this.lblSubtotal.TabIndex = 2;
@@ -110,7 +112,7 @@
             // 
             this.btnRemover.BackColor = System.Drawing.Color.White;
             this.btnRemover.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemover.Location = new System.Drawing.Point(1280, 683);
+            this.btnRemover.Location = new System.Drawing.Point(1357, 725);
             this.btnRemover.Name = "btnRemover";
             this.btnRemover.Size = new System.Drawing.Size(116, 23);
             this.btnRemover.TabIndex = 11;
@@ -121,7 +123,7 @@
             // btnFinalizar
             // 
             this.btnFinalizar.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFinalizar.Location = new System.Drawing.Point(1280, 712);
+            this.btnFinalizar.Location = new System.Drawing.Point(1357, 754);
             this.btnFinalizar.Name = "btnFinalizar";
             this.btnFinalizar.Size = new System.Drawing.Size(116, 23);
             this.btnFinalizar.TabIndex = 12;

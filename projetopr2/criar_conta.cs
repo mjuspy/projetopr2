@@ -7,11 +7,9 @@ namespace projetopr2
 {
     public partial class criar_conta : Form
     {
-        // ✅ String de conexão com autenticação do Windows
-        //string conexaoString = @"Data Source=PCZAO;Initial Catalog=cj3027724pr2;Integrated Security=True;";
+        string conexaoString = @"Data Source=PCZAO;Initial Catalog=cj3027724pr2;Integrated Security=True;";
 
-        // CONEXAO NO IF
-        string conexaoString = @"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno";
+        //string conexaoString = @"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno";
 
         public criar_conta()
         {
@@ -25,7 +23,6 @@ namespace projetopr2
             string password = textBox3.Text.Trim();
             string confirmarSenha = textBox4.Text.Trim();
 
-            // 🔸 Validação básica
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(email) ||
                 string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmarSenha))
             {
@@ -45,49 +42,29 @@ namespace projetopr2
 
             try
             {
-                // ✅ Salva no banco de dados com autenticação do Windows
-                using (SqlConnection conn = new SqlConnection(conexaoString))
-                {
-                    conn.Open();
-                    string query = @"INSERT INTO cadastro 
-                                    (Nome, Email, Senha, EmailConfirmado, TokenConfirmacao) 
-                                    VALUES (@nome, @email, @senha, 0, @token)";
-
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@nome", username);
-                        cmd.Parameters.AddWithValue("@email", email);
-                        cmd.Parameters.AddWithValue("@senha", password); // ⚠️ depois usar hash
-                        cmd.Parameters.AddWithValue("@token", tokenConfirmacao);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-
                 // ✅ Envia email com o código de confirmação
                 EnviarEmailConfirmacao(email, username, tokenConfirmacao);
 
-                MessageBox.Show($"Conta criada! Um código de confirmação foi enviado para {email}.");
+                MessageBox.Show($"Um código de confirmação foi enviado para {email}.");
 
-                // ✅ Abre a tela de confirmação (Form)
-                confimacaosenha frm = new confimacaosenha(email);
-                frm.ShowDialog();
-
+                // ✅ Abre a tela de confirmação e envia os dados
+                confimacaosenha frm = new confimacaosenha(username, email, password, tokenConfirmacao);
+                frm.Show();
                 this.Hide();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao criar conta: " + ex.Message);
+                MessageBox.Show("Erro ao enviar e-mail: " + ex.Message);
             }
         }
 
-        // 🔹 Envio do email
         private void EnviarEmailConfirmacao(string email, string nome, string token)
         {
             using (var smtp = new SmtpClient("smtp.gmail.com", 587))
             {
                 smtp.Credentials = new System.Net.NetworkCredential(
-                    "cienfleuroux@gmail.com",      // seu e-mail
-                    "nekc osbg gkcy ajqo"          // senha de app (não a senha normal)
+                    "cienfleuroux@gmail.com",
+                    "nekc osbg gkcy ajqo"
                 );
                 smtp.EnableSsl = true;
 
@@ -100,11 +77,10 @@ namespace projetopr2
   <div style='max-width:600px; margin:auto; background-color:#ffffff; border-radius:10px; padding:30px; text-align:center; box-shadow:0 0 10px rgba(0,0,0,0.1);'>
     <h2 style='color:#6b4226;'>Bem-vindo ao Cien Fleur ☕</h2>
     <p>Olá <strong>{nome}</strong>,</p>
-    <p>Para concluir seu cadastro, use o código de verificação abaixo:</p>
+    <p>Seu código de verificação é:</p>
     <h1 style='background-color:#ffdf7e; color:#6b4226; padding:15px; border-radius:10px; display:inline-block;'>{token}</h1>
-    <p>Digite esse código na tela de confirmação para ativar sua conta.</p>
+    <p>Digite este código na tela de confirmação para ativar sua conta.</p>
     <hr style='margin:20px 0;'/>
-    <p style='font-size:12px; color:#888888;'>Se você não solicitou essa conta, ignore este e-mail.</p>
     <p style='font-size:12px; color:#888888;'>Equipe Cien Fleur ☕</p>
   </div>
 </body>
@@ -115,7 +91,6 @@ namespace projetopr2
             }
         }
 
-        // 🔹 Botão para voltar ao login
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             tela_login form1 = new tela_login();
@@ -123,7 +98,6 @@ namespace projetopr2
             this.Hide();
         }
 
-        // 🔸 Eventos vazios do Designer
         private void label1_Click(object sender, EventArgs e) { }
         private void label2_Click(object sender, EventArgs e) { }
         private void label3_Click(object sender, EventArgs e) { }

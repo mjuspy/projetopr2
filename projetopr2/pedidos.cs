@@ -13,7 +13,9 @@ namespace projetopr2
 {
     public partial class pedidos : Form
     {
-        private string connectionString = @"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno;";
+        //private string connectionString = @"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno;";
+        string connectionString = @"Data Source=PCZAO;Initial Catalog=cj3027724pr2;Integrated Security=True;";
+
         private DataTable carrinhoTable = new DataTable();
 
         public pedidos()

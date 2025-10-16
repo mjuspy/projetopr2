@@ -13,7 +13,8 @@ namespace projetopr2
 {
     public partial class cardapio1 : Form
     {
-        private string connectionString = @"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno;";
+        //private string connectionString = @"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno;";
+        string connectionString = @"Data Source=PCZAO;Initial Catalog=cj3027724pr2;Integrated Security=True;";
 
         public cardapio1()
         {
@@ -30,11 +31,34 @@ namespace projetopr2
 
         private void AdicionarAoCarrinho(string nomeProduto, decimal precoProduto, int quantidade)
         {
-            // Uma pequena validação para garantir que o usuário não adicione 0 itens.
+            // =================================================================================
+            // CORREÇÃO: Verificando a classe de sessão CORRETA -> SessaoUsuari (sem o 'o')
+            // =================================================================================
+            if (!SessaoUsuario1.IsLoggedIn)
+            {
+                MessageBox.Show("Você precisa fazer o login para adicionar itens ao carrinho.",
+                                "Login Necessário",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+
+                tela_login telaDeLogin = new tela_login(); // Usando o nome da sua tela de login
+                telaDeLogin.ShowDialog();
+
+                if (SessaoUsuari.IsLoggedIn)
+                {
+                    AdicionarAoCarrinho(nomeProduto, precoProduto, quantidade);
+                }
+
+                return;
+            }
+            // =================================================================================
+            // FIM DA CORREÇÃO
+            // =================================================================================
+
             if (quantidade <= 0)
             {
                 MessageBox.Show("Por favor, selecione uma quantidade válida.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; // Encerra o método aqui se a quantidade for inválida.
+                return;
             }
 
             try
@@ -43,25 +67,21 @@ namespace projetopr2
                 {
                     con.Open();
 
-                    // 1. Primeiro, vamos verificar se este produto já existe no carrinho.
                     string sqlVerifica = "SELECT Quantidade FROM Itens_carrinho WHERE Nome_produto = @nome";
                     SqlCommand cmdVerifica = new SqlCommand(sqlVerifica, con);
                     cmdVerifica.Parameters.AddWithValue("@nome", nomeProduto);
                     object resultado = cmdVerifica.ExecuteScalar();
 
-                    
-                    if (resultado != null) // Se o resultado não for nulo, o item JÁ EXISTE.
+                    if (resultado != null)
                     {
-                        // Então, vamos ATUALIZAR a quantidade, somando a nova quantidade à que já existia.
                         string sqlAtualiza = "UPDATE Itens_carrinho SET Quantidade = Quantidade + @qtd WHERE Nome_produto = @nome";
                         SqlCommand cmdAtualiza = new SqlCommand(sqlAtualiza, con);
                         cmdAtualiza.Parameters.AddWithValue("@qtd", quantidade);
                         cmdAtualiza.Parameters.AddWithValue("@nome", nomeProduto);
                         cmdAtualiza.ExecuteNonQuery();
                     }
-                    else // Se o resultado for nulo, o item é NOVO.
+                    else
                     {
-                        // Então, vamos INSERIR uma nova linha no carrinho com os dados do produto.
                         string sqlInsere = "INSERT INTO Itens_carrinho (Nome_produto, Preco_produto, Quantidade) VALUES (@nome, @preco, @qtd)";
                         SqlCommand cmdInsere = new SqlCommand(sqlInsere, con);
                         cmdInsere.Parameters.AddWithValue("@nome", nomeProduto);
@@ -70,12 +90,10 @@ namespace projetopr2
                         cmdInsere.ExecuteNonQuery();
                     }
                 }
-                // Feedback visual para o usuário, confirmando que a ação deu certo.
                 MessageBox.Show($"{quantidade}x {nomeProduto} foi(foram) adicionado(s) ao carrinho!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                // Se algo der errado com o banco de dados, esta mensagem aparecerá.
                 MessageBox.Show("Ocorreu um erro ao adicionar o item: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -191,6 +209,11 @@ namespace projetopr2
             pedidos frm = new pedidos();
             frm.ShowDialog();
             
+        }
+
+        private void cardapio1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
