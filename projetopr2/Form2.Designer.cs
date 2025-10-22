@@ -40,9 +40,9 @@
             // listBoxCarrinho
             // 
             this.listBoxCarrinho.FormattingEnabled = true;
-            this.listBoxCarrinho.Location = new System.Drawing.Point(104, 52);
+            this.listBoxCarrinho.Location = new System.Drawing.Point(61, 52);
             this.listBoxCarrinho.Name = "listBoxCarrinho";
-            this.listBoxCarrinho.Size = new System.Drawing.Size(138, 121);
+            this.listBoxCarrinho.Size = new System.Drawing.Size(226, 121);
             this.listBoxCarrinho.TabIndex = 0;
             // 
             // lblTotal

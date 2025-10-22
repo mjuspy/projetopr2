@@ -84,5 +84,12 @@ private void btnVerPedidos_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void ir_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.Show();
+            this.Hide();
+        }
     }
 }
