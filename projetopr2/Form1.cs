@@ -14,7 +14,11 @@ namespace projetopr2
         {
             InitializeComponent();
         }
+        // 🔹 Conexão antiga (autenticação SQL) — mantida comentada
+        //string stringDeConexao = @"Data Source=SQLEXPRESS;Initial Catalog=cj3027724pr2;User ID=aluno;Password=aluno";
 
+        // 🔹 Nova conexão (autenticação do Windows)
+        string stringDeConexao = @"Data Source=PCZAO;Initial Catalog=cj3027724pr2;Integrated Security=True;";
         private async void btnBuscarCEP_Click(object sender, EventArgs e)
         {
             // CORREÇÃO: Havia uma chave { extra aqui, que foi removida.
@@ -78,19 +82,18 @@ namespace projetopr2
 
             // --- 2. Obter o ID do Usuário Logado ---
             // Usando a sua classe de sessão
-            int usuarioLogadoID = SessaoUsuari.ID_usuario;
+            int usuarioLogadoID = SessaoUsuario1.UsuarioLogado.Id;
 
             // --- 3. Preparar e Executar o Comando SQL ---
             // CORREÇÃO: A string de conexão e a query SQL foram movidas para DENTRO do método.
 
             // !! IMPORTANTE !! Substitua pela sua string de conexão real
-            string stringDeConexao = "Server=SEU_SERVIDOR;Database=SEU_BANCO;User Id=SEU_USUARIO;Password=SUA_SENHA;";
 
             // Usei a sua query SQL com os nomes das suas colunas (cod_cliente, etc)
             string sqlQuery = @"INSERT INTO Enderecos 
-                                  (cod_cliente, CEP, Rua, Numero, Complemento, Bairro, Cidade, Estado, Apelido) 
+                                  (cod_cliente, CEP, Rua, Numero, Complemento, Bairro, Cidade, Estado) 
                                 VALUES 
-                                  (@cod_cliente, @CEP, @Rua, @Numero, @Complemento, @Bairro, @Cidade, @Estado, @Apelido)";
+                                  (@cod_cliente, @CEP, @Rua, @Numero, @Complemento, @Bairro, @Cidade, @Estado)";
 
             // CORREÇÃO: O bloco try-catch foi colocado aqui, dentro do método, para executar a lógica.
             try

@@ -137,7 +137,6 @@ namespace projetopr2
                                 Nome = reader["nome"].ToString(),
                                 Email = reader["email"].ToString()
                             };
-
                             SessaoUsuario1.Login(usuarioLogado);
 
                             MessageBox.Show($"Bem-vindo(a), {usuarioLogado.Nome}!");

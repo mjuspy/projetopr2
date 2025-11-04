@@ -91,5 +91,28 @@ private void btnVerPedidos_Click(object sender, EventArgs e)
             form1.Show();
             this.Hide();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            cardapio form4 = new cardapio();
+            form4.Show();
+
+            // Oculta a tela de login
+            this.Hide();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            pedidos form6 = new pedidos();
+            form6.Show();
+            this.Hide();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            tela_login form1 = new tela_login();
+            form1.Show();
+            this.Hide();
+        }
     }
 }

@@ -51,11 +51,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="confimacaosenha.cs">
+    <Compile Include="confirmacaosenha.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="confimacaosenha.Designer.cs">
-      <DependentUpon>confimacaosenha.cs</DependentUpon>
+    <Compile Include="confirmacaosenha.Designer.cs">
+      <DependentUpon>confirmacaosenha.cs</DependentUpon>
     </Compile>
     <Compile Include="cardapio1.cs">
       <SubType>Form</SubType>
@@ -69,11 +69,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="CadastroEndereco.cs">
+    <Compile Include="formListaEnderecos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CadastroEndereco.Designer.cs">
-      <DependentUpon>CadastroEndereco.cs</DependentUpon>
+    <Compile Include="formListaEnderecos.Designer.cs">
+      <DependentUpon>formListaEnderecos.cs</DependentUpon>
     </Compile>
     <Compile Include="pedidos.cs">
       <SubType>Form</SubType>
@@ -134,8 +134,8 @@
     <EmbeddedResource Include="cardapio1.resx">
       <DependentUpon>cardapio1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="confimacaosenha.resx">
-      <DependentUpon>confimacaosenha.cs</DependentUpon>
+    <EmbeddedResource Include="confirmacaosenha.resx">
+      <DependentUpon>confirmacaosenha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -143,8 +143,8 @@
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CadastroEndereco.resx">
-      <DependentUpon>CadastroEndereco.cs</DependentUpon>
+    <EmbeddedResource Include="formListaEnderecos.resx">
+      <DependentUpon>formListaEnderecos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pedidos.resx">
       <DependentUpon>pedidos.cs</DependentUpon>

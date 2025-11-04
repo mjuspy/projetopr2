@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace projetopr2
 {
-    public partial class confimacaosenha : Form
+    public partial class confirmacaosenha : Form
     {
         private string nomeUsuario;
         private string emailUsuario;
@@ -12,7 +12,7 @@ namespace projetopr2
         private string tokenGerado;
 
         // >>> Construtor novo que aceita 4 argumentos (nome, email, senha, token)
-        public confimacaosenha(string nome, string email, string senha, string token)
+        public confirmacaosenha(string nome, string email, string senha, string token)
         {
             InitializeComponent();
             nomeUsuario = nome;
@@ -22,7 +22,7 @@ namespace projetopr2
         }
 
         // Se você também precisar manter o construtor padrão (designer), pode deixar:
-        public confimacaosenha()
+        public confirmacaosenha()
         {
             InitializeComponent();
         }
@@ -99,7 +99,7 @@ namespace projetopr2
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            // Se quiser voltar ao login sem confirmar:
+                     // Se quiser voltar ao login sem confirmar:
             tela_login login = new tela_login();
             login.Show();
             this.Hide();

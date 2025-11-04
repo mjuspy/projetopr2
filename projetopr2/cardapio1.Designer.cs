@@ -42,7 +42,7 @@
             this.btnAdicionarCappuccinoItaliano_Click = new System.Windows.Forms.Button();
             this.btnAdicionarCappuccinoBrasileiro_Click = new System.Windows.Forms.Button();
             this.btnAdicionarMocha_Click = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidadeExpresso)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidadeCappuccinoItaliano)).BeginInit();
@@ -197,81 +197,95 @@
             // 
             // btnAdicionarExpressoDuplo_Click
             // 
+            this.btnAdicionarExpressoDuplo_Click.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(239)))), ((int)(((byte)(208)))));
+            this.btnAdicionarExpressoDuplo_Click.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdicionarExpressoDuplo_Click.Location = new System.Drawing.Point(1650, 373);
             this.btnAdicionarExpressoDuplo_Click.Name = "btnAdicionarExpressoDuplo_Click";
-            this.btnAdicionarExpressoDuplo_Click.Size = new System.Drawing.Size(118, 23);
+            this.btnAdicionarExpressoDuplo_Click.Size = new System.Drawing.Size(141, 23);
             this.btnAdicionarExpressoDuplo_Click.TabIndex = 13;
             this.btnAdicionarExpressoDuplo_Click.Text = "Adicionar ao carrinho";
-            this.btnAdicionarExpressoDuplo_Click.UseVisualStyleBackColor = true;
+            this.btnAdicionarExpressoDuplo_Click.UseVisualStyleBackColor = false;
             this.btnAdicionarExpressoDuplo_Click.Click += new System.EventHandler(this.btnAdicionarExpressoDuplo_Click_Click_1);
             // 
             // btnAdicionarExpressoMachiato_Click
             // 
+            this.btnAdicionarExpressoMachiato_Click.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(239)))), ((int)(((byte)(208)))));
+            this.btnAdicionarExpressoMachiato_Click.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdicionarExpressoMachiato_Click.Location = new System.Drawing.Point(1650, 464);
             this.btnAdicionarExpressoMachiato_Click.Name = "btnAdicionarExpressoMachiato_Click";
-            this.btnAdicionarExpressoMachiato_Click.Size = new System.Drawing.Size(118, 23);
+            this.btnAdicionarExpressoMachiato_Click.Size = new System.Drawing.Size(141, 23);
             this.btnAdicionarExpressoMachiato_Click.TabIndex = 14;
             this.btnAdicionarExpressoMachiato_Click.Text = "Adicionar ao carrinho";
-            this.btnAdicionarExpressoMachiato_Click.UseVisualStyleBackColor = true;
+            this.btnAdicionarExpressoMachiato_Click.UseVisualStyleBackColor = false;
             this.btnAdicionarExpressoMachiato_Click.Click += new System.EventHandler(this.btnAdicionarExpressoMachiato_Click_Click_1);
             // 
             // btnAdicionarLatte_Click
             // 
+            this.btnAdicionarLatte_Click.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(239)))), ((int)(((byte)(208)))));
+            this.btnAdicionarLatte_Click.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdicionarLatte_Click.Location = new System.Drawing.Point(1650, 559);
             this.btnAdicionarLatte_Click.Name = "btnAdicionarLatte_Click";
-            this.btnAdicionarLatte_Click.Size = new System.Drawing.Size(118, 23);
+            this.btnAdicionarLatte_Click.Size = new System.Drawing.Size(141, 23);
             this.btnAdicionarLatte_Click.TabIndex = 15;
             this.btnAdicionarLatte_Click.Text = "Adicionar ao carrinho";
-            this.btnAdicionarLatte_Click.UseVisualStyleBackColor = true;
+            this.btnAdicionarLatte_Click.UseVisualStyleBackColor = false;
             this.btnAdicionarLatte_Click.Click += new System.EventHandler(this.btnAdicionarLatte_Click_Click_1);
             // 
             // btnAdicionarCappuccinoItaliano_Click
             // 
+            this.btnAdicionarCappuccinoItaliano_Click.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(239)))), ((int)(((byte)(208)))));
+            this.btnAdicionarCappuccinoItaliano_Click.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdicionarCappuccinoItaliano_Click.Location = new System.Drawing.Point(1650, 650);
             this.btnAdicionarCappuccinoItaliano_Click.Name = "btnAdicionarCappuccinoItaliano_Click";
-            this.btnAdicionarCappuccinoItaliano_Click.Size = new System.Drawing.Size(124, 23);
+            this.btnAdicionarCappuccinoItaliano_Click.Size = new System.Drawing.Size(141, 23);
             this.btnAdicionarCappuccinoItaliano_Click.TabIndex = 16;
             this.btnAdicionarCappuccinoItaliano_Click.Text = "Adicionar ao carrinho";
-            this.btnAdicionarCappuccinoItaliano_Click.UseVisualStyleBackColor = true;
+            this.btnAdicionarCappuccinoItaliano_Click.UseVisualStyleBackColor = false;
             this.btnAdicionarCappuccinoItaliano_Click.Click += new System.EventHandler(this.btnAdicionarCappuccinoItaliano_Click_Click_1);
             // 
             // btnAdicionarCappuccinoBrasileiro_Click
             // 
+            this.btnAdicionarCappuccinoBrasileiro_Click.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(239)))), ((int)(((byte)(208)))));
+            this.btnAdicionarCappuccinoBrasileiro_Click.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdicionarCappuccinoBrasileiro_Click.Location = new System.Drawing.Point(1650, 748);
             this.btnAdicionarCappuccinoBrasileiro_Click.Name = "btnAdicionarCappuccinoBrasileiro_Click";
             this.btnAdicionarCappuccinoBrasileiro_Click.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btnAdicionarCappuccinoBrasileiro_Click.Size = new System.Drawing.Size(118, 23);
+            this.btnAdicionarCappuccinoBrasileiro_Click.Size = new System.Drawing.Size(141, 23);
             this.btnAdicionarCappuccinoBrasileiro_Click.TabIndex = 17;
             this.btnAdicionarCappuccinoBrasileiro_Click.Text = "Adicionar ao carrinho";
-            this.btnAdicionarCappuccinoBrasileiro_Click.UseVisualStyleBackColor = true;
+            this.btnAdicionarCappuccinoBrasileiro_Click.UseVisualStyleBackColor = false;
             this.btnAdicionarCappuccinoBrasileiro_Click.Click += new System.EventHandler(this.btnAdicionarCappuccinoBrasileiro_Click_Click_1);
             // 
             // btnAdicionarMocha_Click
             // 
+            this.btnAdicionarMocha_Click.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(239)))), ((int)(((byte)(208)))));
+            this.btnAdicionarMocha_Click.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdicionarMocha_Click.Location = new System.Drawing.Point(1650, 841);
             this.btnAdicionarMocha_Click.Name = "btnAdicionarMocha_Click";
-            this.btnAdicionarMocha_Click.Size = new System.Drawing.Size(118, 23);
+            this.btnAdicionarMocha_Click.Size = new System.Drawing.Size(141, 23);
             this.btnAdicionarMocha_Click.TabIndex = 18;
             this.btnAdicionarMocha_Click.Text = "Adicionar ao carrinho";
-            this.btnAdicionarMocha_Click.UseVisualStyleBackColor = true;
+            this.btnAdicionarMocha_Click.UseVisualStyleBackColor = false;
             this.btnAdicionarMocha_Click.Click += new System.EventHandler(this.btnAdicionarMocha_Click_Click_1);
             // 
-            // button1
+            // button2
             // 
-            this.button1.Location = new System.Drawing.Point(1650, 946);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 26);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(239)))), ((int)(((byte)(208)))));
+            this.button2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(1615, 953);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(142, 38);
+            this.button2.TabIndex = 20;
+            this.button2.Text = "CONTINUAR";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // cardapio1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1924, 1061);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.btnAdicionarMocha_Click);
             this.Controls.Add(this.btnAdicionarCappuccinoBrasileiro_Click);
             this.Controls.Add(this.btnAdicionarCappuccinoItaliano_Click);
@@ -315,6 +329,6 @@
         private System.Windows.Forms.Button btnAdicionarCappuccinoItaliano_Click;
         private System.Windows.Forms.Button btnAdicionarCappuccinoBrasileiro_Click;
         private System.Windows.Forms.Button btnAdicionarMocha_Click;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

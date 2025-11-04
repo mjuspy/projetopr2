@@ -1,6 +1,6 @@
 ﻿namespace projetopr2
 {
-    partial class confimacaosenha
+    partial class confirmacaosenha
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(confimacaosenha));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(confirmacaosenha));
             this.buttonConfirmar = new System.Windows.Forms.Button();
             this.textBoxToken = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();

@@ -31,62 +31,74 @@ namespace projetopr2
 
         private void AdicionarAoCarrinho(string nomeProduto, decimal precoProduto, int quantidade)
         {
-            // =================================================================================
-            // CORREÇÃO: Verificando a classe de sessão CORRETA -> SessaoUsuari (sem o 'o')
-            // =================================================================================
-            if (!SessaoUsuario1.IsLoggedIn)
+            // 1. VERIFICAR O LOGIN E PEGAR O ID
+            // Usamos 'SessaoUsuario1.UsuarioLogado' que é o objeto salvo no seu login
+            if (SessaoUsuario1.UsuarioLogado == null)
             {
                 MessageBox.Show("Você precisa fazer o login para adicionar itens ao carrinho.",
                                 "Login Necessário",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
 
-                tela_login telaDeLogin = new tela_login(); // Usando o nome da sua tela de login
+                tela_login telaDeLogin = new tela_login();
                 telaDeLogin.ShowDialog();
 
-                if (SessaoUsuari.IsLoggedIn)
+                // Se o usuário fez o login, tentamos adicionar de novo.
+                if (SessaoUsuario1.UsuarioLogado != null)
                 {
+                    // O usuário agora está logado, chama a função novamente
                     AdicionarAoCarrinho(nomeProduto, precoProduto, quantidade);
                 }
 
+                // Para a execução desta primeira chamada
                 return;
             }
-            // =================================================================================
-            // FIM DA CORREÇÃO
-            // =================================================================================
 
+            // Se chegou aqui, o usuário ESTÁ LOGADO
+            int idDoClienteAtual = SessaoUsuario1.UsuarioLogado.Id;
+
+            // 2. VERIFICAR QUANTIDADE
             if (quantidade <= 0)
             {
                 MessageBox.Show("Por favor, selecione uma quantidade válida.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            // 3. LÓGICA DE BANCO DE DADOS (AGORA COM 'cod_cliente')
             try
             {
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
 
-                    string sqlVerifica = "SELECT Quantidade FROM Itens_carrinho WHERE Nome_produto = @nome";
+                    // SQL VERIFICA (CORRIGIDO: Filtra pelo produto E pelo cliente)
+                    string sqlVerifica = "SELECT Quantidade FROM Itens_carrinho WHERE Nome_produto = @nome AND cod_cliente = @IdCliente";
                     SqlCommand cmdVerifica = new SqlCommand(sqlVerifica, con);
                     cmdVerifica.Parameters.AddWithValue("@nome", nomeProduto);
+                    cmdVerifica.Parameters.AddWithValue("@IdCliente", idDoClienteAtual); // <--- CORREÇÃO
                     object resultado = cmdVerifica.ExecuteScalar();
 
                     if (resultado != null)
                     {
-                        string sqlAtualiza = "UPDATE Itens_carrinho SET Quantidade = Quantidade + @qtd WHERE Nome_produto = @nome";
+                        // SQL ATUALIZA (CORRIGIDO: Filtra pelo produto E pelo cliente)
+                        string sqlAtualiza = "UPDATE Itens_carrinho SET Quantidade = Quantidade + @qtd " +
+                                             "WHERE Nome_produto = @nome AND cod_cliente = @IdCliente";
                         SqlCommand cmdAtualiza = new SqlCommand(sqlAtualiza, con);
                         cmdAtualiza.Parameters.AddWithValue("@qtd", quantidade);
                         cmdAtualiza.Parameters.AddWithValue("@nome", nomeProduto);
+                        cmdAtualiza.Parameters.AddWithValue("@IdCliente", idDoClienteAtual); // <--- CORREÇÃO
                         cmdAtualiza.ExecuteNonQuery();
                     }
                     else
                     {
-                        string sqlInsere = "INSERT INTO Itens_carrinho (Nome_produto, Preco_produto, Quantidade) VALUES (@nome, @preco, @qtd)";
+                        // SQL INSERE (CORRIGIDO: Salva o cod_cliente junto)
+                        string sqlInsere = "INSERT INTO Itens_carrinho (Nome_produto, Preco_produto, Quantidade, cod_cliente) " +
+                                           "VALUES (@nome, @preco, @qtd, @IdCliente)";
                         SqlCommand cmdInsere = new SqlCommand(sqlInsere, con);
                         cmdInsere.Parameters.AddWithValue("@nome", nomeProduto);
                         cmdInsere.Parameters.AddWithValue("@preco", precoProduto);
                         cmdInsere.Parameters.AddWithValue("@qtd", quantidade);
+                        cmdInsere.Parameters.AddWithValue("@IdCliente", idDoClienteAtual); // <--- CORREÇÃO
                         cmdInsere.ExecuteNonQuery();
                     }
                 }
@@ -214,6 +226,12 @@ namespace projetopr2
         private void cardapio1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            pedidos frm = new pedidos();
+            frm.ShowDialog();
         }
     }
 }

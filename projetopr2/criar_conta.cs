@@ -48,7 +48,7 @@ namespace projetopr2
                 MessageBox.Show($"Um código de confirmação foi enviado para {email}.");
 
                 // ✅ Abre a tela de confirmação e envia os dados
-                confimacaosenha frm = new confimacaosenha(username, email, password, tokenConfirmacao);
+                confirmacaosenha frm = new confirmacaosenha(username, email, password, tokenConfirmacao);
                 frm.Show();
                 this.Hide();
             }
