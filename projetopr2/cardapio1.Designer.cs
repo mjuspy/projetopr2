@@ -43,6 +43,7 @@
             this.btnAdicionarCappuccinoBrasileiro_Click = new System.Windows.Forms.Button();
             this.btnAdicionarMocha_Click = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidadeExpresso)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidadeCappuccinoItaliano)).BeginInit();
@@ -50,6 +51,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidadeMocha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidadeExpressoMachiato)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidadeLatte)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -280,11 +282,23 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(-60, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(348, 221);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox2.TabIndex = 21;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
             // cardapio1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1924, 1061);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnAdicionarMocha_Click);
             this.Controls.Add(this.btnAdicionarCappuccinoBrasileiro_Click);
@@ -309,6 +323,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidadeMocha)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidadeExpressoMachiato)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidadeLatte)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -330,5 +345,6 @@
         private System.Windows.Forms.Button btnAdicionarCappuccinoBrasileiro_Click;
         private System.Windows.Forms.Button btnAdicionarMocha_Click;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

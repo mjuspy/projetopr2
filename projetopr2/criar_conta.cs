@@ -105,5 +105,10 @@ namespace projetopr2
         private void textBox1_TextChanged(object sender, EventArgs e) { }
         private void pictureBox2_Click_1(object sender, EventArgs e) { }
         private void label5_Click(object sender, EventArgs e) { }
+
+        private void pictureBox2_Click_2(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

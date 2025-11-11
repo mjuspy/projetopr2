@@ -424,5 +424,16 @@ namespace projetopr2
         private void lblSubtotal_Click(object sender, EventArgs e) { }
         private void lblEntrega_Click(object sender, EventArgs e) { }
         private void lblTotal_Click(object sender, EventArgs e) { }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            formMeusPedidos Form = new formMeusPedidos();
+            Form.ShowDialog();
+        }
     }
 }

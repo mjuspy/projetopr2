@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(pedidos));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.dgvCarrinho = new System.Windows.Forms.DataGridView();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblSubtotal = new System.Windows.Forms.Label();
             this.lblEntrega = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
@@ -41,12 +40,16 @@
             this.chkEntrega = new System.Windows.Forms.CheckBox();
             this.chkRetira = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbPix = new System.Windows.Forms.RadioButton();
-            this.rbCredito = new System.Windows.Forms.RadioButton();
             this.rbDebito = new System.Windows.Forms.RadioButton();
+            this.rbCredito = new System.Windows.Forms.RadioButton();
+            this.rbPix = new System.Windows.Forms.RadioButton();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarrinho)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // imageList1
@@ -66,18 +69,6 @@
             this.dgvCarrinho.Size = new System.Drawing.Size(850, 559);
             this.dgvCarrinho.TabIndex = 1;
             this.dgvCarrinho.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(223)))), ((int)(((byte)(181)))));
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(-20, -1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1920, 1080);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // lblSubtotal
             // 
@@ -126,7 +117,6 @@
             this.btnRemover.TabIndex = 11;
             this.btnRemover.Text = "Remover item";
             this.btnRemover.UseVisualStyleBackColor = false;
-         //   this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
             // 
             // btnFinalizar
             // 
@@ -177,16 +167,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Forma de Pagamento";
             // 
-            // rbPix
+            // rbDebito
             // 
-            this.rbPix.AutoSize = true;
-            this.rbPix.Location = new System.Drawing.Point(6, 20);
-            this.rbPix.Name = "rbPix";
-            this.rbPix.Size = new System.Drawing.Size(39, 17);
-            this.rbPix.TabIndex = 0;
-            this.rbPix.TabStop = true;
-            this.rbPix.Text = "Pix";
-            this.rbPix.UseVisualStyleBackColor = true;
+            this.rbDebito.AutoSize = true;
+            this.rbDebito.Location = new System.Drawing.Point(144, 20);
+            this.rbDebito.Name = "rbDebito";
+            this.rbDebito.Size = new System.Drawing.Size(107, 17);
+            this.rbDebito.TabIndex = 3;
+            this.rbDebito.TabStop = true;
+            this.rbDebito.Text = "Cartão de Crédito";
+            this.rbDebito.UseVisualStyleBackColor = true;
             // 
             // rbCredito
             // 
@@ -199,22 +189,57 @@
             this.rbCredito.Text = "Cartão de Débito";
             this.rbCredito.UseVisualStyleBackColor = true;
             // 
-            // rbDebito
+            // rbPix
             // 
-            this.rbDebito.AutoSize = true;
-            this.rbDebito.Location = new System.Drawing.Point(144, 20);
-            this.rbDebito.Name = "rbDebito";
-            this.rbDebito.Size = new System.Drawing.Size(107, 17);
-            this.rbDebito.TabIndex = 3;
-            this.rbDebito.TabStop = true;
-            this.rbDebito.Text = "Cartão de Crédito";
-            this.rbDebito.UseVisualStyleBackColor = true;
+            this.rbPix.AutoSize = true;
+            this.rbPix.Location = new System.Drawing.Point(6, 20);
+            this.rbPix.Name = "rbPix";
+            this.rbPix.Size = new System.Drawing.Size(39, 17);
+            this.rbPix.TabIndex = 0;
+            this.rbPix.TabStop = true;
+            this.rbPix.Text = "Pix";
+            this.rbPix.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(-40, -1);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(303, 248);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox2.TabIndex = 17;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(223)))), ((int)(((byte)(181)))));
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(-20, -1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1920, 1080);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1315, 864);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(189, 23);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Visualizar pedidos";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // pedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1924, 1061);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.chkRetira);
             this.Controls.Add(this.chkEntrega);
@@ -229,9 +254,10 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.pedidos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarrinho)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -253,5 +279,7 @@
         private System.Windows.Forms.RadioButton rbDebito;
         private System.Windows.Forms.RadioButton rbCredito;
         private System.Windows.Forms.RadioButton rbPix;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button button1;
     }
 }

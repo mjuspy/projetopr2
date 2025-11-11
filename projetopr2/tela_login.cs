@@ -112,14 +112,25 @@ namespace projetopr2
                 return;
             }
 
+            // 🔹 Verificação de login do FUNCIONÁRIO
+            if (email.Equals("funcionario", StringComparison.OrdinalIgnoreCase) && senha == "cienfleur123")
+            {
+                MessageBox.Show("Login de funcionário realizado com sucesso!");
+
+                // Abre o painel administrativo
+                funcionarios painelFuncionario = new funcionarios();
+                painelFuncionario.Show();
+                this.Hide();
+                return;
+            }
+
+            // 🔹 Login normal de CLIENTE
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionStringWindows))
                 {
                     conn.Open();
 
-                    // Note que ajustei os nomes das colunas para serem EXATAMENTE como no seu SQL (tudo minúsculo)
-                    // Isso evita erros de "nome de coluna não encontrado".
                     string sql = "SELECT [cod_cliente], [nome], [email] FROM [cadastro] WHERE [email] = @Email AND [senha] = @Senha";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
@@ -137,17 +148,15 @@ namespace projetopr2
                                 Nome = reader["nome"].ToString(),
                                 Email = reader["email"].ToString()
                             };
+
                             SessaoUsuario1.Login(usuarioLogado);
 
-                            MessageBox.Show($"Bem-vindo(a), {usuarioLogado.Nome}!");
+                            MessageBox.Show($"Bem-vindo(a), {usuarioLogado.Nome}! 💐");
 
-                            // ✅ Ao invés de fechar a tela, abrimos a tela inicial
                             tela_inicial telaInicial = new tela_inicial();
                             telaInicial.Show();
                             this.Hide();
                         }
-
-                    
                         else
                         {
                             MessageBox.Show("Email ou senha inválidos.");
@@ -160,6 +169,7 @@ namespace projetopr2
                 MessageBox.Show("Erro ao conectar ao banco de dados: " + ex.Message);
             }
         }
+
 
         // 🔸 Código antigo de conexão (mantido comentado)
         /*
@@ -188,7 +198,7 @@ namespace projetopr2
             }
         }
         */
-    //}
+        //}
         //        }
         //    }
         //    catch (Exception ex)
@@ -268,6 +278,16 @@ namespace projetopr2
                     }
                 }
             }
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -233,5 +233,10 @@ namespace projetopr2
             pedidos frm = new pedidos();
             frm.ShowDialog();
         }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

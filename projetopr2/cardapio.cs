@@ -50,6 +50,11 @@ namespace projetopr2
             frm.ShowDialog();
             this.Close();
         }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
 
