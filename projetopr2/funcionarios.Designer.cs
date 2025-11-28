@@ -33,6 +33,7 @@
             this.btnAtualizarStatus = new System.Windows.Forms.Button();
             this.btnEnviarEmail = new System.Windows.Forms.Button();
             this.btnRelatorio = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,7 +44,6 @@
             this.dgvPedidos.Name = "dgvPedidos";
             this.dgvPedidos.Size = new System.Drawing.Size(1554, 574);
             this.dgvPedidos.TabIndex = 0;
-    //        this.dgvPedidos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPedidos_CellContentClick_1);
             // 
             // cmbStatus
             // 
@@ -83,11 +83,22 @@
             this.btnRelatorio.UseVisualStyleBackColor = true;
             this.btnRelatorio.Click += new System.EventHandler(this.btnRelatorio_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(523, 722);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // funcionarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1855, 934);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnRelatorio);
             this.Controls.Add(this.btnEnviarEmail);
             this.Controls.Add(this.btnAtualizarStatus);
@@ -108,5 +119,6 @@
         private System.Windows.Forms.Button btnAtualizarStatus;
         private System.Windows.Forms.Button btnEnviarEmail;
         private System.Windows.Forms.Button btnRelatorio;
+        private System.Windows.Forms.Button button1;
     }
 }

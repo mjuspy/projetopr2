@@ -220,5 +220,12 @@ namespace projetopr2
         }
 
         private void cmbStatus_SelectedIndexChanged(object sender, EventArgs e) { }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form3 form1 = new Form3();
+            form1.Show();
+            this.Hide();
+        }
     }
 }
