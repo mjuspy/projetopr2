@@ -152,9 +152,10 @@ namespace projetopr2
         private void txtPreco_TextChanged(object sender, EventArgs e) { }
         private void Readonly_Click(object sender, EventArgs e) { }
 
-        private void dgvProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+      
+            private void button1_Click(object sender, EventArgs e)
         {
-
+            CarregarProdutos(); // Chama aquele mesmo método que busca no banco
         }
     }
-}
+    }

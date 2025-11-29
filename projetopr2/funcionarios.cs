@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Printing; // Necessário para o relatório gráfico
 using System.IO;
 using System.Net;
 using System.Net.Mail;
@@ -21,13 +22,14 @@ namespace projetopr2
 
         private void funcionarios_Load(object sender, EventArgs e)
         {
-            CarregarPedidos();
+            CarregarPedidos(); // Já carrega com os filtros (ou sem nada no inicio)
             EstilizarDataGridView();
 
             dgvPedidos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPedidos.MultiSelect = false;
             dgvPedidos.ReadOnly = true;
 
+            // Preenche o combo de status
             cmbStatus.Items.AddRange(new string[] {
                 "Pagamento pendente",
                 "Pagamento aprovado",
@@ -36,6 +38,87 @@ namespace projetopr2
                 "Entregue",
                 "Cancelado"
             });
+        }
+
+        // 🔍 MÉTODO DE PESQUISA INTELIGENTE (FILTRA NOME E DATA)
+        private void CarregarPedidos()
+        {
+            try
+            {
+                using (SqlConnection conexao = new SqlConnection(connectionString))
+                {
+                    conexao.Open();
+
+                    // Começa pegando tudo
+                    string query = @"SELECT 
+                                        ID_pedido, 
+                                        Nome_cliente, 
+                                        FormaPagamento, 
+                                        Status_pedido, 
+                                        Total, 
+                                        Data_pedido, 
+                                        Email_cliente 
+                                     FROM Pedidos 
+                                     WHERE 1=1"; // Truque para adicionar ANDs depois
+
+                    // Filtro de Nome
+                    if (!string.IsNullOrEmpty(txtBuscaNome.Text))
+                    {
+                        query += " AND Nome_cliente LIKE @nome";
+                    }
+
+                    // Filtro de Data (Só se o Checkbox estiver marcado)
+                    if (chkFiltrarData.Checked)
+                    {
+                        query += " AND CAST(Data_pedido AS DATE) = @data";
+                    }
+
+                    query += " ORDER BY Data_pedido DESC";
+
+                    SqlCommand cmd = new SqlCommand(query, conexao);
+
+                    // Adiciona os parâmetros
+                    if (!string.IsNullOrEmpty(txtBuscaNome.Text))
+                    {
+                        cmd.Parameters.AddWithValue("@nome", "%" + txtBuscaNome.Text + "%");
+                    }
+                    if (chkFiltrarData.Checked)
+                    {
+                        cmd.Parameters.AddWithValue("@data", dtpBuscaData.Value.Date);
+                    }
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dgvPedidos.DataSource = dt;
+
+                    // --- CALCULA O TOTAL VENDIDO NA TELA ---
+                    decimal totalGeral = 0;
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        if (row["Total"] != DBNull.Value)
+                        {
+                            totalGeral += Convert.ToDecimal(row["Total"]);
+                        }
+                    }
+                    // Atualiza a Label de Total
+                    lblTotalVendido.Text = "Total Filtrado: " + totalGeral.ToString("C");
+                    lblTotalVendido.ForeColor = Color.Green;
+                }
+
+                if (dgvPedidos.Columns.Contains("ID_pedido"))
+                    dgvPedidos.Columns["ID_pedido"].HeaderText = "ID";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar pedidos: " + ex.Message);
+            }
+        }
+
+        // Botão de Pesquisar (Chama o CarregarPedidos)
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            CarregarPedidos();
         }
 
         // 🎨 Estilo do DataGridView
@@ -60,31 +143,6 @@ namespace projetopr2
 
             dgvPedidos.RowHeadersVisible = false;
             dgvPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        }
-
-        // 📦 Carrega pedidos
-        private void CarregarPedidos()
-        {
-            using (SqlConnection conexao = new SqlConnection(connectionString))
-            {
-                string query = @"SELECT 
-                                ID_pedido, 
-                                Nome_cliente, 
-                                FormaPagamento, 
-                                Status_pedido, 
-                                Total, 
-                                Data_pedido, 
-                                Email_cliente 
-                             FROM Pedidos";
-
-                SqlDataAdapter da = new SqlDataAdapter(query, conexao);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dgvPedidos.DataSource = dt;
-            }
-
-            if (dgvPedidos.Columns.Contains("ID_pedido"))
-                dgvPedidos.Columns["ID_pedido"].HeaderText = "ID";
         }
 
         // 🔄 Atualiza status
@@ -179,37 +237,102 @@ namespace projetopr2
             }
         }
 
-        // 📊 Relatório de vendas
+        // 📊 RELATÓRIO PROFISSIONAL (GRÁFICO)
         private void btnRelatorio_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conexao = new SqlConnection(connectionString))
+            if (dgvPedidos.Rows.Count == 0)
             {
-                string query = @"SELECT Nome_cliente, FormaPagamento, Total, Data_pedido, Status_pedido FROM Pedidos";
-                SqlCommand cmd = new SqlCommand(query, conexao);
-                conexao.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                StringBuilder relatorio = new StringBuilder();
-                relatorio.AppendLine("=== RELATÓRIO DE VENDAS - CIEN FLEUR ===\n");
-
-                while (reader.Read())
-                {
-                    relatorio.AppendLine($"Cliente: {reader["Nome_cliente"]}");
-                    relatorio.AppendLine($"Método: {reader["FormaPagamento"]}");
-                    relatorio.AppendLine($"Valor: R$ {reader["Total"]}");
-                    relatorio.AppendLine($"Data: {reader["Data_pedido"]}");
-                    relatorio.AppendLine($"Status: {reader["Status_pedido"]}");
-                    relatorio.AppendLine("----------------------------------------");
-                }
-
-                reader.Close();
-                conexao.Close();
-
-                string caminho = Path.Combine(Application.StartupPath, "relatorio_vendas.txt");
-                File.WriteAllText(caminho, relatorio.ToString());
-
-                MessageBox.Show($"Relatório gerado com sucesso!\n\nArquivo salvo em:\n{caminho}");
+                MessageBox.Show("Não há dados na tabela para gerar relatório.");
+                return;
             }
+
+            PrintDocument pd = new PrintDocument();
+            pd.PrintPage += new PrintPageEventHandler(ImprimirRelatorio);
+            pd.DefaultPageSettings.Landscape = true; // Paisagem cabe mais dados
+
+            PrintPreviewDialog preview = new PrintPreviewDialog();
+            preview.Document = pd;
+            preview.WindowState = FormWindowState.Maximized;
+            preview.ShowDialog();
+        }
+
+        // --- O DESENHISTA DO RELATÓRIO ---
+        private void ImprimirRelatorio(object sender, PrintPageEventArgs e)
+        {
+            Font fonteTitulo = new Font("Arial", 18, FontStyle.Bold);
+            Font fonteCabecalho = new Font("Arial", 10, FontStyle.Bold);
+            Font fonteDados = new Font("Courier New", 9);
+
+            SolidBrush pincel = new SolidBrush(Color.Black);
+            Pen caneta = new Pen(Color.Black, 1);
+
+            float y = 30;
+            float margemEsq = 30;
+
+            // Título
+            e.Graphics.DrawString("RELATÓRIO DE VENDAS - CIEN FLEUR", fonteTitulo, pincel, margemEsq, y);
+            y += 30;
+            e.Graphics.DrawString("Gerado em: " + DateTime.Now.ToString(), fonteDados, pincel, margemEsq, y);
+            y += 40;
+
+            // Cabeçalho das colunas
+            float xId = margemEsq;
+            float xData = margemEsq + 60;
+            float xCliente = margemEsq + 200;
+            float xPagamento = margemEsq + 500;
+            float xValor = margemEsq + 700;
+            float xStatus = margemEsq + 850;
+
+            e.Graphics.DrawString("ID", fonteCabecalho, pincel, xId, y);
+            e.Graphics.DrawString("DATA", fonteCabecalho, pincel, xData, y);
+            e.Graphics.DrawString("CLIENTE", fonteCabecalho, pincel, xCliente, y);
+            e.Graphics.DrawString("PAGAMENTO", fonteCabecalho, pincel, xPagamento, y);
+            e.Graphics.DrawString("VALOR", fonteCabecalho, pincel, xValor, y);
+            e.Graphics.DrawString("STATUS", fonteCabecalho, pincel, xStatus, y);
+
+            y += 20;
+            e.Graphics.DrawLine(caneta, margemEsq, y, e.PageBounds.Width - 30, y);
+            y += 10;
+
+            decimal totalRelatorio = 0;
+
+            // Loop nos dados da Grid
+            foreach (DataGridViewRow row in dgvPedidos.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                string id = row.Cells["ID_pedido"].Value.ToString();
+                string data = Convert.ToDateTime(row.Cells["Data_pedido"].Value).ToString("dd/MM/yyyy HH:mm");
+
+                string cliente = row.Cells["Nome_cliente"].Value.ToString();
+                if (cliente.Length > 25) cliente = cliente.Substring(0, 25) + "..."; // Corta nome longo
+
+                string pag = row.Cells["FormaPagamento"].Value?.ToString() ?? "N/A";
+
+                decimal valor = Convert.ToDecimal(row.Cells["Total"].Value);
+                totalRelatorio += valor;
+
+                string status = row.Cells["Status_pedido"].Value?.ToString() ?? "";
+
+                e.Graphics.DrawString(id, fonteDados, pincel, xId, y);
+                e.Graphics.DrawString(data, fonteDados, pincel, xData, y);
+                e.Graphics.DrawString(cliente, fonteDados, pincel, xCliente, y);
+                e.Graphics.DrawString(pag, fonteDados, pincel, xPagamento, y);
+                e.Graphics.DrawString(valor.ToString("C"), fonteDados, pincel, xValor, y);
+                e.Graphics.DrawString(status, fonteDados, pincel, xStatus, y);
+
+                y += 20;
+            }
+
+            y += 20;
+            e.Graphics.DrawLine(caneta, margemEsq, y, e.PageBounds.Width - 30, y);
+            y += 10;
+
+            // Total Final no Relatório
+            Font fonteTotal = new Font("Arial", 14, FontStyle.Bold);
+            string textoTotal = "TOTAL GERAL: " + totalRelatorio.ToString("C");
+            StringFormat alinhamentoDir = new StringFormat() { Alignment = StringAlignment.Far };
+            e.Graphics.DrawString(textoTotal, fonteTotal, Brushes.DarkBlue, e.PageBounds.Width - 50, y, alinhamentoDir);
         }
 
         // 🖱️ Corrige a seleção de linha no clique da célula
@@ -226,6 +349,11 @@ namespace projetopr2
             Form3 form1 = new Form3();
             form1.Show();
             this.Hide();
+        }
+
+        private void btnFiltrar_Click_1(object sender, EventArgs e)
+        {
+            CarregarPedidos();
         }
     }
 }

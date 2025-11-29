@@ -87,45 +87,56 @@ namespace projetopr2
                         // IMPORTANTE: Você precisa ter criado Labels na tela (ex: lblPrecoMachiato)
                         switch (id)
                         {
-                            case 1: // Machiato
-                                nomeProd1 = nome; // Atualiza a variável usada no botão
-                                precoProd1 = preco;
-                                // lblNomeMachiato.Text = nome;  <-- Descomente quando criar a Label
-                                // lblPrecoMachiato.Text = "R$ " + preco.ToString("F2"); 
-                                break;
-
-                            case 2: // Latte
-                                nomeProd2 = nome;
-                                precoProd2 = preco;
-                                // lblNomeLatte.Text = nome;
-                                // lblPrecoLatte.Text = "R$ " + preco.ToString("F2");
-                                break;
-
-                            case 3: // Cappuccino Italiano
-                                nomeProd3 = nome;
-                                precoProd3 = preco;
-                                // lblNomeCapItaliano.Text = nome;
-                                // lblPrecoCapItaliano.Text = "R$ " + preco.ToString("F2");
-                                break;
-
-                            case 4: // Cappuccino Brasileiro
-                                nomeProd4 = nome;
-                                precoProd4 = preco;
-                                // lblNomeCapBrasil.Text = nome;
-                                // lblPrecoCapBrasil.Text = "R$ " + preco.ToString("F2");
-                                break;
-
-                            case 5: // Mocha
-                                nomeProd5 = nome;
-                                precoProd5 = preco;
-                                // lblNomeMocha.Text = nome;
-                                // lblPrecoMocha.Text = "R$ " + preco.ToString("F2");
-                                break;
-
-                            // Caso tenha o Expresso Duplo no banco como ID 6
-                            case 6:
+                            // --- ID 1: ESPRESSO SIMPLES (Novo) ---
+                            // Vamos usar as variáveis do 'Prod6' (antigo Expresso Duplo) para esse botão
+                            case 1:
                                 nomeProd6 = nome;
                                 precoProd6 = preco;
+                                // Se você tiver uma label para o Expresso Simples/Duplo, use aqui:
+                                lblNomeEspresso.Text = nome;
+                                lblPrecoEspresso.Text = "R$ " + preco.ToString("F2");
+                                break;
+
+                            // --- ID 2: MACHIATO (Era o 1, agora é o 2) ---
+                            // Usamos 'Prod1' porque seu botão de Machiato usa a variavel nomeProd1
+                            case 2:
+                                nomeProd1 = nome;
+                                precoProd1 = preco;
+                                lblMachiato.Text = nome;  // <--- AQUI ESTÁ O MACHIATO
+                                lblPrecoMachiato.Text = "R$ " + preco.ToString("F2");
+                                break;
+
+                            // --- ID 3: LATTE ---
+                            // Usamos 'Prod2' para bater com o botão do Latte
+                            case 3:
+                                nomeProd2 = nome;
+                                precoProd2 = preco;
+                                lblNomeLatte.Text = nome;
+                                lblPrecoLatte.Text = "R$ " + preco.ToString("F2");
+                                break;
+
+                            // --- ID 4: CAPPUCCINO ITALIANO ---
+                            case 4:
+                                nomeProd3 = nome;
+                                precoProd3 = preco;
+                                lblNomeCapItaliano.Text = nome;
+                                lblPrecoCappuccinoItaliano.Text = "R$ " + preco.ToString("F2");
+                                break;
+
+                            // --- ID 5: CAPPUCCINO BRASILEIRO ---
+                            case 5:
+                                nomeProd4 = nome;
+                                precoProd4 = preco;
+                                lblNomeCapBrasil.Text = nome;
+                                lblPrecoCappuccinoBrasileiro.Text = "R$ " + preco.ToString("F2");
+                                break;
+
+                            // --- ID 6: MOCHA ---
+                            case 6:
+                                nomeProd5 = nome;
+                                precoProd5 = preco;
+                                lblNomeMocha.Text = nome;
+                                lblPrecoMocha.Text = "R$ " + preco.ToString("F2");
                                 break;
                         }
                     }
@@ -225,7 +236,7 @@ namespace projetopr2
         private void pictureBox2_Click(object sender, EventArgs e) { this.Close(); }
 
         // Botões antigos ou vazios
-        private void pictureBox1_Click(object sender, EventArgs e) { }
+        private void pictureBox1_Click(object sender, EventArgs e) {}
         private void btnAdicionarExpressoDuplo_Click_Click(object sender, EventArgs e) { } // Cuidado com cliques duplicados
         private void btnAdicionarExpressoMachiato_Click_Click(object sender, EventArgs e) { }
         private void btnAdicionarLatte_Click_Click(object sender, EventArgs e) { }
@@ -235,5 +246,20 @@ namespace projetopr2
         private void numQuantidadeCappuccinoItaliano_ValueChanged(object sender, EventArgs e) { }
         private void numQuantidadeExpresso_ValueChanged(object sender, EventArgs e) { }
         private void numQuantidadeExpressoMachiato_ValueChanged(object sender, EventArgs e) { }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblMachiato_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
